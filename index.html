@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Projeto Integrado (EJA) — Redação Funcional • Aula 7 (Premium)</title>
+
+<!-- =========================================================
+  ✅ FALANGE PREMIUM — AULA 7 (EJA)
+  Progressão natural após Aula 6 (polir texto):
+  - Aula 7: TEXTO FUNCIONAL DO COTIDIANO
+    -> Bilhete (curto e pessoal)
+    -> Recado (intermediário, orienta alguém)
+    -> Aviso/Comunicado (objetivo, coletivo, regra/horário)
+
+  Recursos Premium:
+  - Entrada (Nome/Turma/Escola)
+  - Narrador (pt-BR)
+  - Modo Baixa Visão
+  - Conferir / OK por atividade
+  - Barra de Progresso
+  - Certificado liberado ao concluir tudo
+  - Sopa de Letras (imprimível + marcar no clique)
+========================================================= -->
+
+<style>
+/* =========================================================
+   [INÍCIO] 0) VARIÁVEIS / TEMA (PADRÃO FALANGE)
+========================================================= */
+:root{
+  --paper:#f3f4df; --ink:#111;
+  --violet:#8e44ad; --violet2:#b36cff;
+  --blue:#3aa0e6;   --blue2:#64d2ff;
+  --green:#2ecc71;  --green2:#7CFFB2;
+  --orange:#f39c12; --orange2:#ffd08a;
+  --red:#d94b3a;    --red2:#ff8d7b;
+
+  --shadow: rgba(0,0,0,.16);
+  --focus: rgba(58,160,230,.28);
+
+  --fontBase: 13.2pt;
+  --fontBig:  17.2pt;
+
+  --cardPad: 12px;
+  --radius:  16px;
+}
+/* =========================================================
+   [FIM] 0) VARIÁVEIS
+========================================================= */
+*{ box-sizing:border-box; }
+
+/* =========================================================
+   [INÍCIO] 1) BODY
+========================================================= */
+body{
+  margin:0;
+  background:#e5e7eb;
+  font-family: Arial, Helvetica, sans-serif;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  overflow-x:auto;
+  overflow-y:auto;
+  font-size: var(--fontBase);
+  color: var(--ink);
+}
+.wrap{ display:none; flex-direction:column; gap:14px; padding-bottom:18px; }
+/* =========================================================
+   [FIM] 1) BODY
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 2) BAIXA VISÃO
+========================================================= */
+body.lowVision{ font-size: var(--fontBig); }
+body.lowVision .centerTitle{ font-size: 13.2pt; }
+body.lowVision .bannerTitle{ font-size: 19pt; }
+body.lowVision .bannerSub{ font-size: 13.5pt; }
+body.lowVision .cardTitle{ font-size: 14.4pt; }
+body.lowVision .hint{ font-size: 13.2pt; }
+body.lowVision .small{ font-size: 12.8pt; }
+body.lowVision textarea, body.lowVision input, body.lowVision select{
+  font-size: 15.8pt; padding: 12px 12px;
+}
+body.lowVision .ctrlBtn{ font-size: 13.2pt; padding: 10px 12px; }
+/* =========================================================
+   [FIM] 2) BAIXA VISÃO
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 3) PÁGINA A4 (paisagem)
+========================================================= */
+.page{
+  width:297mm;
+  height:500mm;
+  background: var(--paper);
+  position:relative;
+  overflow:hidden;
+  box-shadow: 0 10px 30px var(--shadow);
+  border-radius: 10px;
+}
+.content{
+  position:absolute;
+  left:18mm; right:18mm;
+  top:16mm; bottom:18mm;
+}
+.content::before{
+  content:"";
+  position:absolute; inset:-20px;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(142,68,173,.12), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(58,160,230,.12), transparent 45%),
+    radial-gradient(circle at 20% 85%, rgba(46,204,113,.10), transparent 42%),
+    radial-gradient(circle at 85% 80%, rgba(243,156,18,.10), transparent 50%);
+  pointer-events:none; z-index:0;
+}
+.content > *{ position:relative; z-index:1; }
+/* =========================================================
+   [FIM] 3) PÁGINA
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 4) CABEÇALHO + BARRAS
+========================================================= */
+.header{
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center;
+  gap:10px;
+}
+.centerTitle{
+  font-weight:900;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  font-size:11pt;
+  text-align:center;
+  color: var(--violet);
+}
+.bncc{
+  font-weight:900;
+  font-size:10pt;
+  text-align:right;
+  color:#1b1b1b;
+}
+.bars{
+  margin-top:6px;
+  display:grid;
+  grid-template-columns:1fr 10px 1fr;
+  gap:10px;
+}
+.bar{ height:6px; border-radius:999px; background: linear-gradient(90deg, var(--violet), var(--blue)); }
+.bar.alt{ background: linear-gradient(90deg, var(--orange), var(--green)); }
+/* =========================================================
+   [FIM] 4) CABEÇALHO
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 5) TOP BAR
+========================================================= */
+.topBar{
+  width:min(297mm,96vw);
+  border-radius:var(--radius);
+  padding:10px;
+  background:#fff;
+  border:2px solid rgba(0,0,0,.12);
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
+.pill{
+  display:inline-flex;
+  gap:6px;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  border:2px dashed rgba(0,0,0,.18);
+  background:#fafafa;
+  font-weight:900;
+  font-size:9.6pt;
+}
+.progressBar{
+  width:220px; height:12px;
+  border-radius:999px;
+  background:#eee;
+  border:1px solid rgba(0,0,0,.12);
+  overflow:hidden;
+}
+.progressFill{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+}
+/* =========================================================
+   [FIM] 5) TOP BAR
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 6) BANNER
+========================================================= */
+.banner{
+  margin-top:10px;
+  border-radius:var(--radius);
+  padding:12px 14px;
+  border: 2px solid rgba(0,0,0,.12);
+  background: linear-gradient(90deg, rgba(58,160,230,.10), rgba(46,204,113,.10));
+}
+.bannerTitle{ font-weight:900; font-size:14.6pt; color:#2b0b3b; margin:0; }
+.bannerSub{ margin:6px 0 0 0; font-size:11.2pt; line-height:1.35; color:#111; }
+.badgeRow{ margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#fff;
+  border: 2px dashed rgba(0,0,0,.2);
+  font-weight:900;
+  font-size:9.8pt;
+}
+/* =========================================================
+   [FIM] 6) BANNER
+========================================================= */
+
+.cols{ margin-top:10px; display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+
+/* =========================================================
+   [INÍCIO] 7) CARDS
+========================================================= */
+.card{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:var(--cardPad);
+  border: 2px solid rgba(0,0,0,.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{ content:""; position:absolute; inset:0; opacity:.10; pointer-events:none; }
+.card.blue::before{ background: linear-gradient(120deg, var(--blue), var(--blue2)); }
+.card.green::before{ background: linear-gradient(120deg, var(--green), var(--green2)); }
+.card.orange::before{ background: linear-gradient(120deg, var(--orange), var(--orange2)); }
+.card.violet::before{ background: linear-gradient(120deg, var(--violet), var(--violet2)); }
+.card.red::before{ background: linear-gradient(120deg, var(--red), var(--red2)); }
+
+.cardTitle{ margin:0 0 6px 0; text-align:center; font-weight:900; font-size:12.2pt; color:#2b0b3b; }
+.hint{ margin:0 0 8px 0; text-align:center; font-size:10.8pt; line-height:1.35; color:#111; }
+.small{ font-size:10.2pt; color:#111; line-height:1.35; }
+
+.quote{
+  font-weight:900;
+  text-align:left;
+  font-size:11.2pt;
+  padding:10px 12px;
+  border-radius:14px;
+  border:2px dashed rgba(0,0,0,.18);
+  background:#fafafa;
+  line-height:1.35;
+}
+/* =========================================================
+   [FIM] 7) CARDS
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 8) CAMPOS
+========================================================= */
+textarea, input[type="text"], select{
+  width:100%;
+  border:2px solid rgba(0,0,0,.40);
+  border-radius:12px;
+  padding:10px 12px;
+  font-size:11.6pt;
+  outline:none;
+  background:#fff;
+}
+textarea{ min-height:120px; resize:vertical; }
+textarea:focus, input:focus, select:focus{
+  box-shadow: 0 0 0 4px var(--focus);
+  border-color: rgba(58,160,230,.75);
+}
+/* =========================================================
+   [FIM] 8) CAMPOS
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 9) BOTÕES / FEEDBACK
+========================================================= */
+.controls{ margin-top:8px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.ctrlBtn{
+  border:2px solid rgba(0,0,0,.70);
+  background:#fff;
+  border-radius:12px;
+  padding:8px 10px;
+  cursor:pointer;
+  font-weight:900;
+  font-size:10.2pt;
+}
+.ctrlBtn:hover{ transform: translateY(-1px); }
+.ctrlBtn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
+
+.warn{
+  display:none;
+  background:#fff3e0;
+  border:2px solid rgba(243,156,18,.6);
+  border-radius:12px;
+  padding:8px 10px;
+  font-size:10.2pt;
+  line-height:1.35;
+  margin-top:8px;
+}
+.okBadge{
+  display:none;
+  padding:4px 10px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:10.2pt;
+  background:#eafff1;
+  border:2px solid rgba(46,204,113,.6);
+}
+/* =========================================================
+   [FIM] 9) FEEDBACK
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 10) OVERLAYS (Entrada + Certificado)
+========================================================= */
+.overlay{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+  z-index:9999;
+}
+.modal{
+  width:min(900px, 96vw);
+  background:#fff;
+  border-radius:18px;
+  padding:14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  border:2px solid rgba(0,0,0,.12);
+}
+.modal h2{ margin:0 0 8px 0; font-size:17.5pt; }
+.modal .sub{ margin:0 0 12px 0; font-size:11.4pt; line-height:1.35; color:#111; }
+.formGrid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+@media (max-width:900px){ .formGrid{ grid-template-columns:1fr; } }
+.modalActions{ margin-top:12px; display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+.bigBtn{
+  border:2px solid rgba(0,0,0,.7);
+  background:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+  font-weight:900;
+}
+.bigBtn.primary{ background: linear-gradient(90deg, rgba(58,160,230,.14), rgba(46,204,113,.14)); border-color: rgba(58,160,230,.55); }
+.bigBtn:disabled{ opacity:.5; cursor:not-allowed; }
+
+#certOverlay{ display:none; }
+#certCard{ width:min(980px, 96vw); background:#fff; border-radius:18px; padding:14px; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+#certInner{
+  border:3px solid rgba(58,160,230,.55);
+  border-radius:16px;
+  padding:16px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(58,160,230,.18), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(46,204,113,.14), transparent 45%),
+    linear-gradient(180deg, #f6fffb, #ffffff);
+}
+#certTitle{ text-align:center; font-weight:900; font-size:22pt; color:#0b3b2b; letter-spacing:.4px; }
+#certSub{ margin-top:6px; text-align:center; font-weight:900; font-size:11.6pt; color:#111; }
+#certName{ margin-top:12px; text-align:center; font-size:12.2pt; }
+#certMeta{ margin-top:10px; text-align:center; font-size:10.8pt; color:#111; line-height:1.45; }
+#certStamp{ margin-top:14px; display:flex; justify-content:space-between; gap:10px; align-items:flex-end; flex-wrap:wrap; }
+.sig{ width:320px; border-top:2px solid rgba(0,0,0,.55); padding-top:6px; font-size:10.2pt; text-align:center; }
+#certBtns{ margin-top:14px; display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+.certBtn{ border:2px solid rgba(0,0,0,.7); background:#fff; border-radius:12px; padding:10px 12px; cursor:pointer; font-weight:900; }
+/* =========================================================
+   [FIM] 10) OVERLAYS
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 11) SOPA DE LETRAS (visual premium)
+========================================================= */
+.wordsearchWrap{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap:10px;
+  align-items:start;
+}
+.grid{
+  width:100%;
+  border:2px solid rgba(0,0,0,.55);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+.gridHeader{
+  padding:8px 10px;
+  font-weight:900;
+  background: linear-gradient(90deg, rgba(58,160,230,.12), rgba(46,204,113,.12));
+  border-bottom:2px solid rgba(0,0,0,.12);
+  display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+}
+.gridBoard{
+  display:grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap:0;
+}
+.cell{
+  border:1px solid rgba(0,0,0,.14);
+  text-align:center;
+  font-weight:900;
+  font-size:12.5pt;
+  padding:8px 0;
+  user-select:none;
+  cursor:pointer;
+}
+.cell.on{ background: rgba(243,156,18,.22); outline:2px solid rgba(243,156,18,.55); }
+.wordList{
+  border:2px dashed rgba(0,0,0,.22);
+  border-radius:14px;
+  padding:10px;
+  background:#fafafa;
+}
+.wordList .small{ margin-bottom:6px; }
+.wordItem{
+  display:flex; align-items:center; gap:8px;
+  padding:6px 6px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.10);
+  margin-bottom:8px;
+  font-weight:900;
+}
+.wordItem input{ transform:scale(1.2); }
+.wsBtns{ margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+/* =========================================================
+   [FIM] 11) SOPA DE LETRAS
+========================================================= */
+
+
+/* =========================================================
+   [INÍCIO] 12) PAC-MAN PEDAGÓGICO (AULA 7)
+========================================================= */
+.statusLive{ padding:8px 10px; border-radius:12px; border:2px dashed rgba(0,0,0,.18); background:#fff; font-weight:900; text-align:center; }
+.statusLive.ready{ background:#eef9ff; border-color:rgba(58,160,230,.45); }
+.statusLive.playing{ background:#fff8e9; border-color:rgba(243,156,18,.45); }
+.statusLive.won{ background:#eafff1; border-color:rgba(46,204,113,.55); }
+.statusLive.lost{ background:#fff0f0; border-color:rgba(217,75,58,.45); }
+.lessonOverlay{ position:fixed; inset:0; background:rgba(0,0,0,.72); display:none; align-items:center; justify-content:center; padding:14px; z-index:10000; }
+.lessonOverlayCard{ width:min(1400px, 98vw); height:min(92vh, 980px); background:#fff; border-radius:18px; border:2px solid rgba(0,0,0,.14); box-shadow:0 18px 50px rgba(0,0,0,.35); padding:12px; display:flex; flex-direction:column; gap:10px; }
+.lessonOverlayTop{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+.lessonOverlayTitle{ font-size:16pt; font-weight:900; color:#2b0b3b; }
+.lessonOverlaySub{ font-size:10.4pt; color:#111; }
+.pacmanFrameWrap{ flex:1; min-height:0; border-radius:14px; overflow:hidden; border:2px solid rgba(0,0,0,.12); background:#06101a; }
+.pacmanFrame{ width:100%; height:100%; border:0; display:block; background:#06101a; }
+/* =========================================================
+   [FIM] 12) PAC-MAN PEDAGÓGICO
+========================================================= */
+/* =========================================================
+   ♿ MODO BAIXA VISÃO + ANTI-CORTE UNIVERSAL
+   Funciona em: iPhone, Android, Tablet, Desktop
+========================================================= */
+
+/* Nunca esconder overflow */
+html, body{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:auto;
+}
+
+/* Imagens nunca estouram */
+img, video, iframe, canvas{
+  max-width:100%;
+  height:auto;
+}
+
+/* ---------- RESPONSIVO AUTOMÁTICO (CELULAR) ---------- */
+@media (max-width: 1024px){
+
+  body{
+    padding:10px;
+  }
+
+  .page{
+    width:min(297mm, 98vw);
+    max-width:98vw;
+    height:auto;            /* nunca corta embaixo */
+    min-height:unset;
+    overflow:visible;       /* nunca corta lateral */
+  }
+
+  .content{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    padding:14px;
+  }
+
+  /* Se tiver grid 2 colunas */
+  .cols{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* ---------- BAIXA VISÃO ---------- */
+body.lowVision{
+  font-size:140%;
+  overflow-x:auto;
+  overflow-y:auto;
+}
+
+body.lowVision .page{
+  width:min(297mm, 98vw);
+  max-width:98vw;
+  height:auto;
+  overflow:visible;
+}
+
+body.lowVision .content{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+  padding:16px;
+}
+
+body.lowVision .cols{
+  grid-template-columns:1fr !important;
+}
+
+/* Botões maiores */
+body.lowVision button{
+  font-size:1.1em;
+  padding:12px 16px;
+}
+
+/* Inputs maiores */
+body.lowVision input,
+body.lowVision textarea{
+  font-size:1.1em;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+<div style="
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  z-index:999999;
+">
+  <button onclick="toggleLowVision()"
+    style="
+      padding:12px 16px;
+      border-radius:14px;
+      border:none;
+      font-weight:bold;
+      background:#111;
+      color:white;
+      cursor:pointer;">
+    👁️ Baixa Visão
+  </button>
+</div>
+<!-- =========================================================
+     [INÍCIO] A) OVERLAY ENTRADA
+========================================================= -->
+<div class="overlay" id="startOverlay">
+  <div class="modal">
+    <h2>📌 Aula 7 Premium (EJA) — Bilhete • Recado • Aviso</h2>
+    <p class="sub">
+      Agora você vai escrever textos do dia a dia (isso é redação funcional de verdade):<br>
+      ✅ <b>BILHETE</b> (curto, pessoal) • ✅ <b>RECADO</b> (orienta alguém) • ✅ <b>AVISO</b> (para várias pessoas).<br>
+      Você vai ler exemplos, identificar o tipo, completar campos, reescrever e produzir um texto completo.
+    </p>
+
+    <div class="formGrid">
+      <div>
+        <div class="small"><b>Nome</b></div>
+        <input id="inName" type="text" placeholder="Ex.: José Silva" />
+      </div>
+      <div>
+        <div class="small"><b>Turma</b></div>
+        <input id="inClass" type="text" placeholder="Ex.: EJA 4ª Etapa" />
+      </div>
+      <div>
+        <div class="small"><b>Escola</b></div>
+        <input id="inSchool" type="text" placeholder="Ex.: Escola Estadual ___" />
+      </div>
+    </div>
+
+    <div class="modalActions">
+      <button class="bigBtn" onclick="demoFill()">Preencher exemplo</button>
+      <button class="bigBtn primary" id="btnEnter" onclick="enterLesson()" disabled>Entrar na aula</button>
+    </div>
+  </div>
+</div>
+<!-- =========================================================
+     [FIM] A) OVERLAY ENTRADA
+========================================================= -->
+
+
+<!-- =========================================================
+     [INÍCIO] B) WRAP
+========================================================= -->
+<div class="wrap" id="wrap">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="topBar">
+    <div class="row">
+      <div class="row" style="justify-content:flex-start;">
+        <span class="pill">👤 <span id="uiName">—</span></span>
+        <span class="pill">🏫 <span id="uiClass">—</span></span>
+        <span class="pill">📍 <span id="uiSchool">—</span></span>
+      </div>
+
+      <div class="row" style="justify-content:flex-end;">
+        <span class="pill">📈 Progresso: <b><span id="uiProg">0%</span></b></span>
+        <div class="progressBar"><div class="progressFill" id="progFill"></div></div>
+
+        <button class="ctrlBtn" onclick="speakPT(narrations.global)">🔊 Narrador</button>
+        <button class="ctrlBtn" onclick="toggleLowVision()">👁️ Baixa visão</button>
+        <button class="ctrlBtn" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+        <button class="ctrlBtn" id="btnCert" onclick="openCert()" disabled>🏅 Certificado</button>
+      </div>
+    </div>
+    <div class="small" style="margin-top:6px; text-align:center;">
+      Clique em <b>✅ Conferir</b> para liberar o <b>OK</b>. O certificado só libera quando terminar tudo.
+    </div>
+  </div>
+
+  <!-- ===================== PÁGINA 1 ===================== -->
+  <section class="page" aria-label="Página 1">
+    <div class="content">
+
+      <div class="header">
+        <div></div>
+        <div class="centerTitle">PROJETO INTEGRADO (EJA) • REDAÇÃO FUNCIONAL • AULA 7 • PÁGINA 1</div>
+        <div class="bncc">BNCC: CG1, CG8</div>
+      </div>
+      <div class="bars"><div class="bar"></div><div></div><div class="bar alt"></div></div>
+
+      <div class="banner">
+        <h3 class="bannerTitle">🧾 Textos do cotidiano (funcionais)</h3>
+        <p class="bannerSub">
+          Todo texto tem <b>objetivo</b>, <b>destinatário</b> (para quem) e <b>informação principal</b> (o que precisa saber).<br>
+          Você vai aprender a escrever com clareza e sem enrolar.
+        </p>
+        <div class="badgeRow">
+          <span class="badge">🎯 Objetivo</span>
+          <span class="badge">👥 Para quem</span>
+          <span class="badge">🕒 Quando/onde</span>
+          <span class="badge">✍️ Assinatura</span>
+        </div>
+      </div>
+
+      <div class="cols">
+
+        <!-- A1 -->
+        <div class="card blue">
+          <h4 class="cardTitle">🟦 Atividade 1 — Identificar o tipo de texto</h4>
+          <p class="hint">Leia e escolha: <b>Bilhete</b>, <b>Recado</b> ou <b>Aviso</b>.</p>
+
+          <div class="quote">
+            “Maria, fui ao mercado. Volto às 18h. Se chegar antes, deixa a chave com a vizinha. Obrigado.”
+          </div>
+
+          <div class="small" style="margin-top:8px;"><b>Isso é:</b></div>
+          <select id="a1sel">
+            <option value="">Escolha...</option>
+            <option value="bilhete">Bilhete</option>
+            <option value="recado">Recado</option>
+            <option value="aviso">Aviso/Comunicado</option>
+          </select>
+
+          <div class="controls">
+            <button class="ctrlBtn" onclick="speakPT(narrations.a1)">🔊 Ouvir</button>
+            <button class="ctrlBtn" onclick="checkA1()">✅ Conferir</button>
+            <span class="okBadge" id="a1ok">OK — identificou</span>
+          </div>
+          <div class="warn" id="a1msg">Dica: tem destinatário (Maria), é curto e pessoal.</div>
+        </div>
+
+        <!-- A2 -->
+        <div class="card orange">
+          <h4 class="cardTitle">🟧 Atividade 2 — Campos obrigatórios (checklist)</h4>
+          <p class="hint">Marque o que todo texto funcional precisa ter (pelo menos 4 itens).</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <label class="quote" style="font-weight:900;"><input id="a2c1" type="checkbox" style="transform:scale(1.2);margin-right:8px;"> Para quem (destinatário)</label>
+            <label class="quote" style="font-weight:900;"><input id="a2c2" type="checkbox" style="transform:scale(1.2);margin-right:8px;"> O que aconteceu / pedido</label>
+            <label class="quote" style="font-weight:900;"><input id="a2c3" type="checkbox" style="transform:scale(1.2);margin-right:8px;"> Quando / horário</label>
+            <label class="quote" style="font-weight:900;"><input id="a2c4" type="checkbox" style="transform:scale(1.2);margin-right:8px;"> Onde / local (se precisar)</label>
+            <label class="quote" style="font-weight:900;"><input id="a2c5" type="checkbox" style="transform:scale(1.2);margin-right:8px;"> Assinatura (quem escreveu)</label>
+            <label class="quote" style="font-weight:900;"><input id="a2c6" type="checkbox" style="transform:scale(1.2);margin-right:8px;"> “Texto longo e bonito” (sempre)</label>
+          </div>
+
+          <div class="controls">
+            <button class="ctrlBtn" onclick="speakPT(narrations.a2)">🔊 Ouvir</button>
+            <button class="ctrlBtn" onclick="checkA2()">✅ Conferir</button>
+            <span class="okBadge" id="a2ok">OK — checklist</span>
+          </div>
+          <div class="warn" id="a2msg">Marque pelo menos 4 itens corretos. Cuidado: “texto longo e bonito” NÃO é obrigatório.</div>
+        </div>
+
+      </div>
+
+      <div class="cols" style="margin-top:10px;">
+        <!-- A3 -->
+        <div class="card violet" style="grid-column:1/-1;">
+          <h4 class="cardTitle">🟪 Atividade 3 — Reescrita Premium (clareza + pontuação)</h4>
+          <p class="hint">
+            Pegue o texto ruim e reescreva melhor. Regra: <b>2 frases</b>, com <b>ponto final</b> e <b>um conectivo</b> (porque/mas/então/também).
+          </p>
+
+          <div class="quote">
+            Texto ruim: “joao vem aqui amanha 8h traz documento nao esquece”
+          </div>
+
+          <textarea id="a3txt" placeholder="Reescreva aqui (2 frases, ponto final e 1 conectivo). Ex.: João, venha aqui amanhã às 8h, porque preciso do documento. Não esqueça, por favor."></textarea>
+
+          <div class="controls">
+            <button class="ctrlBtn" onclick="speakPT(narrations.a3)">🔊 Ouvir</button>
+            <button class="ctrlBtn" onclick="checkA3()">✅ Conferir</button>
+            <span class="okBadge" id="a3ok">OK — reescreveu</span>
+          </div>
+          <div class="warn" id="a3msg">Para concluir: 2+ frases (com .), 1 conectivo e texto compreensível.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PÁGINA 2 ===================== -->
+  <section class="page" aria-label="Página 2">
+    <div class="content">
+
+      <div class="header">
+        <div></div>
+        <div class="centerTitle">PROJETO INTEGRADO (EJA) • REDAÇÃO FUNCIONAL • AULA 7 • PÁGINA 2</div>
+        <div class="bncc">BNCC: CG1, CG8</div>
+      </div>
+      <div class="bars"><div class="bar alt"></div><div></div><div class="bar"></div></div>
+
+      <div class="banner" style="background: linear-gradient(90deg, rgba(243,156,18,.12), rgba(142,68,173,.10));">
+        <h3 class="bannerTitle">✍️ Produção guiada + Sopa de Letras</h3>
+        <p class="bannerSub">
+          Agora você vai escrever um <b>bilhete</b> e um <b>aviso</b> com estrutura correta — e depois fazer a sopa de letras para fixar o vocabulário.
+        </p>
+        <div class="badgeRow">
+          <span class="badge">📝 Bilhete</span>
+          <span class="badge">📣 Aviso</span>
+          <span class="badge">🧩 Sopa</span>
+          <span class="badge">✅ Revisão</span>
+        </div>
+      </div>
+
+      <div class="cols">
+
+        <!-- A4 -->
+        <div class="card green">
+          <h4 class="cardTitle">🟩 Atividade 4 — Escrever um BILHETE (6–8 linhas)</h4>
+          <p class="hint">
+            Situação: você vai sair e precisa deixar um bilhete para alguém da sua casa.<br>
+            Regras premium: tem que ter <b>para quem</b>, <b>o que</b>, <b>horário</b> e <b>assinatura</b>.
+          </p>
+
+          <div class="quote">
+            Modelo de estrutura (não copie igual):<br>
+            “(Nome), (mensagem principal). (Horário/tempo). (Pedido/Orientação). (Assinatura).”
+          </div>
+
+          <textarea id="a4txt" placeholder="Escreva seu bilhete aqui (6–8 linhas)."></textarea>
+
+          <div class="controls">
+            <button class="ctrlBtn" onclick="speakPT(narrations.a4)">🔊 Ouvir</button>
+            <button class="ctrlBtn" onclick="checkA4()">✅ Conferir</button>
+            <span class="okBadge" id="a4ok">OK — bilhete</span>
+          </div>
+          <div class="warn" id="a4msg">Para concluir: 6 linhas e conter: para quem + horário + pedido/orientação + assinatura.</div>
+        </div>
+
+        <!-- A5 -->
+        <div class="card red">
+          <h4 class="cardTitle">🟥 Atividade 5 — Escrever um AVISO/COMUNICADO (objetivo)</h4>
+          <p class="hint">
+            Situação: um aviso para várias pessoas (moradores/alunos/clientes).<br>
+            Regras premium: título + informação principal + data/horário + orientação.
+          </p>
+
+          <div class="quote">
+            Tema sugerido (escolha 1):<br>
+            1) “Manutenção” • 2) “Reunião” • 3) “Mudança de horário” • 4) “Documento obrigatório”
+          </div>
+
+          <textarea id="a5txt" placeholder="Escreva seu aviso aqui (mín. 5 linhas). Comece com um TÍTULO em maiúsculo."></textarea>
+
+          <div class="controls">
+            <button class="ctrlBtn" onclick="speakPT(narrations.a5)">🔊 Ouvir</button>
+            <button class="ctrlBtn" onclick="checkA5()">✅ Conferir</button>
+            <span class="okBadge" id="a5ok">OK — aviso</span>
+          </div>
+          <div class="warn" id="a5msg">Para concluir: título em maiúsculo + 5 linhas + data/horário + orientação clara.</div>
+        </div>
+
+      </div>
+
+      <!-- A6: SOPA DE LETRAS -->
+      <div class="cols" style="margin-top:10px;">
+        <div class="card blue" style="grid-column:1/-1;">
+          <h4 class="cardTitle">🟦 Atividade 6 — Sopa de Letras (vocabulário do texto funcional)</h4>
+          <p class="hint">
+            Encontre as palavras. Você pode <b>clicar nas letras</b> para marcar (amarelo). Depois marque as palavras encontradas e clique em <b>Conferir</b>.
+          </p>
+
+          <div class="wordsearchWrap">
+            <div class="grid">
+              <div class="gridHeader">
+                <span>🧩 Grade 13×13</span>
+                <span class="small"><b>Dica:</b> palavras podem estar na horizontal e vertical.</span>
+              </div>
+              <div class="gridBoard" id="wsBoard"></div>
+              <div class="wsBtns">
+                <button class="ctrlBtn" onclick="wsClearMarks()">🧽 Limpar marcações</button>
+                <button class="ctrlBtn" onclick="window.print()">🖨️ Imprimir</button>
+              </div>
+            </div>
+
+            <div class="wordList">
+              <div class="small"><b>Palavras para encontrar:</b></div>
+
+              <label class="wordItem"><input type="checkbox" id="w1"> BILHETE</label>
+              <label class="wordItem"><input type="checkbox" id="w2"> RECADO</label>
+              <label class="wordItem"><input type="checkbox" id="w3"> AVISO</label>
+              <label class="wordItem"><input type="checkbox" id="w4"> TITULO</label>
+              <label class="wordItem"><input type="checkbox" id="w5"> HORARIO</label>
+              <label class="wordItem"><input type="checkbox" id="w6"> ASSINATURA</label>
+              <label class="wordItem"><input type="checkbox" id="w7"> DESTINATARIO</label>
+              <label class="wordItem"><input type="checkbox" id="w8"> MENSAGEM</label>
+
+              <div class="controls">
+                <button class="ctrlBtn" onclick="speakPT(narrations.a6)">🔊 Ouvir</button>
+                <button class="ctrlBtn" onclick="checkA6()">✅ Conferir</button>
+                <span class="okBadge" id="a6ok">OK — sopa</span>
+              </div>
+              <div class="warn" id="a6msg">Para concluir: marque as 8 palavras como encontradas.</div>
+
+              <div class="small" style="margin-top:8px;">
+                <b>Extra premium (opcional):</b> escolha 2 palavras e escreva 1 frase com cada.
+              </div>
+              <textarea id="a6extra" placeholder="Ex.: 'O destinatário do bilhete é minha irmã.'"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A7: REVISÃO FINAL + TÍTULO -->
+      <div class="cols" style="margin-top:10px;">
+        <div class="card violet" style="grid-column:1/-1;">
+          <h4 class="cardTitle">🟪 Atividade 7 — Revisão final premium (bilhete + aviso)</h4>
+          <p class="hint">Marque o checklist e dê um título curto para a aula (3 a 6 palavras).</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+            <label class="quote" style="font-weight:900;"><input type="checkbox" id="c1" style="transform:scale(1.2);margin-right:8px;"> Usei pontuação (., ?)</label>
+            <label class="quote" style="font-weight:900;"><input type="checkbox" id="c2" style="transform:scale(1.2);margin-right:8px;"> Fui claro e direto</label>
+            <label class="quote" style="font-weight:900;"><input type="checkbox" id="c3" style="transform:scale(1.2);margin-right:8px;"> Coloquei horário/dia quando precisa</label>
+          </div>
+
+          <div class="small" style="margin-top:10px;"><b>Título curto da aula:</b></div>
+          <input id="a7title" type="text" placeholder="Ex.: Textos do dia a dia claros" />
+
+          <div class="controls">
+            <button class="ctrlBtn" onclick="speakPT(narrations.a7)">🔊 Ouvir</button>
+            <button class="ctrlBtn" onclick="checkA7()">✅ Conferir</button>
+            <span class="okBadge" id="a7ok">OK — revisou</span>
+          </div>
+          <div class="warn" id="a7msg">Para concluir: marque 2 itens e escreva um título com pelo menos 3 palavras.</div>
+        </div>
+      </div>
+
+      <!-- CERT -->
+      <div class="cols" style="margin-top:10px;">
+        <div class="card green" style="grid-column:1/-1;">
+          <h4 class="cardTitle">🏅 Certificado Premium</h4>
+          <p class="hint">Libera apenas quando A1–A8 estiverem concluídas.</p>
+          <div class="warn" id="certHint" style="display:block;">🔒 Ainda bloqueado: conclua todas as atividades.</div>
+
+          <div class="controls" style="margin-top:10px;">
+            <button class="ctrlBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ Voltar ao início</button>
+            <button class="ctrlBtn" id="btnCert2" onclick="openCert()" disabled>🏅 Abrir certificado</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ===================== PÁGINA 3 ===================== -->
+  <section class="page" aria-label="Página 3">
+    <div class="content">
+
+      <div class="header">
+        <div></div>
+        <div class="centerTitle">PROJETO INTEGRADO (EJA) • REDAÇÃO FUNCIONAL • AULA 7 • PÁGINA 3</div>
+        <div class="bncc">BNCC: CG1, CG8</div>
+      </div>
+      <div class="bars"><div class="bar"></div><div></div><div class="bar alt"></div></div>
+
+      <div class="banner">
+        <h3 class="bannerTitle">🎮 Página extra premium — Pac-Man pedagógico do texto funcional</h3>
+        <p class="bannerSub">
+          Nesta etapa final, o aluno reforça o vocabulário funcional da aula de forma lúdica.<br>
+          A missão é comer apenas as <b>palavras corretas</b> e fugir das palavras erradas.
+        </p>
+        <div class="badgeRow">
+          <span class="badge">🟡 Pac-Man</span>
+          <span class="badge">🟢 Palavra correta</span>
+          <span class="badge">🔴 Palavra errada</span>
+          <span class="badge">🏅 Libera progresso</span>
+        </div>
+      </div>
+
+      <div class="cols">
+
+        <div class="card blue">
+          <h4 class="cardTitle">🟦 Atividade 8 — Pac-Man do vocabulário funcional</h4>
+          <p class="hint">Abra o jogo, vença e depois clique em <b>Conferir</b>.</p>
+
+          <div class="quote">
+            Objetivo pedagógico: reforçar palavras ligadas a <b>bilhete</b>, <b>recado</b> e <b>aviso</b>, com foco em leitura rápida, atenção e tomada de decisão.
+          </div>
+
+          <div class="small" style="margin-top:10px;">
+            <b>Como funciona:</b><br>
+            1. Clique em <b>Abrir Pac-Man</b>.<br>
+            2. Use as setas do teclado para mover.<br>
+            3. Coma as palavras corretas.<br>
+            4. Quando vencer, a aula registra a vitória.<br>
+            5. Depois clique em <b>Conferir</b>.
+          </div>
+
+          <div class="controls" style="margin-top:10px;">
+            <button class="ctrlBtn" onclick="openPacmanModal()">🎮 Abrir Pac-Man</button>
+            <button class="ctrlBtn" onclick="reloadPacmanGame()">🔄 Recarregar jogo</button>
+            <button class="ctrlBtn" onclick="speakPT(narrations.a8)">🔊 Narrador</button>
+            <button class="ctrlBtn" onclick="checkA8()">✅ Conferir</button>
+            <span class="okBadge" id="a8ok">OK — venceu o Pac-Man</span>
+          </div>
+          <div class="warn" id="a8warn">Abra o jogo, vença a partida e só depois clique em Conferir.</div>
+        </div>
+
+        <div class="card green">
+          <h4 class="cardTitle">📊 Monitor do jogo</h4>
+          <p class="hint">Este painel mostra o estado atual do Pac-Man dentro da aula.</p>
+
+          <div class="small"><b>Status do jogo</b></div>
+          <div class="statusLive ready" id="pacmanState">Aguardando abertura do jogo.</div>
+
+          <div class="small" style="margin-top:10px;"><b>Resultado</b></div>
+          <div class="statusLive" id="pacmanResult">Nenhuma vitória registrada ainda.</div>
+
+          <div class="small" style="margin-top:10px;"><b>Pontuação registrada</b></div>
+          <div class="statusLive" id="pacmanScore">0 ponto(s).</div>
+        </div>
+
+      </div>
+
+      <div class="cols" style="margin-top:10px;">
+        <div class="card orange" style="grid-column:1/-1;">
+          <h4 class="cardTitle">🏁 Fechamento da aula</h4>
+          <p class="hint">Depois de concluir A1 até A8, o certificado premium será liberado.</p>
+          <div class="controls">
+            <button class="ctrlBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ Voltar ao início</button>
+            <button class="ctrlBtn" id="btnCert3" onclick="openCert()" disabled>🏅 Abrir certificado</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+<!-- =========================================================
+     [FIM] B) WRAP
+========================================================= -->
+
+
+
+
+<!-- =========================================================
+     [INÍCIO] D) MODAL DO PAC-MAN
+========================================================= -->
+<div class="lessonOverlay" id="pacmanOverlay">
+  <div class="lessonOverlayCard">
+    <div class="lessonOverlayTop">
+      <div>
+        <div class="lessonOverlayTitle">🎮 Pac-Man pedagógico — Aula 7</div>
+        <div class="lessonOverlaySub">Use as setas do teclado. Coma as palavras corretas. Quando vencer, a aula registra automaticamente.</div>
+      </div>
+      <div class="controls" style="margin-top:0;">
+        <button class="ctrlBtn" onclick="reloadPacmanGame()">🔄 Recarregar jogo</button>
+        <button class="ctrlBtn" onclick="closePacmanModal()">✖ Fechar</button>
+      </div>
+    </div>
+
+    <div class="pacmanFrameWrap">
+      <iframe id="pacmanFrame" class="pacmanFrame" title="Pac-Man pedagógico da Aula 7"></iframe>
+    </div>
+  </div>
+</div>
+<!-- =========================================================
+     [FIM] D) MODAL DO PAC-MAN
+========================================================= -->
+
+
+<!-- =========================================================
+     [INÍCIO] C) CERTIFICADO
+========================================================= -->
+<div class="overlay" id="certOverlay">
+  <div id="certCard">
+    <div id="certInner">
+      <div id="certTitle">🏅 Certificado de Conclusão</div>
+      <div id="certSub">Projeto Integrado (EJA) — Redação Funcional • Aula 7: Bilhete • Recado • Aviso</div>
+
+      <div id="certName">Aluno(a): <span id="certStudent">—</span></div>
+
+      <div id="certMeta">
+        Turma: <b><span id="certClass">—</span></b> &nbsp;•&nbsp;
+        Escola: <b><span id="certSchool">—</span></b><br>
+        Concluiu todas as atividades interativas da Aula 7 (EJA), incluindo o Pac-Man pedagógico.<br>
+        Data: <b><span id="certDate">—</span></b>
+      </div>
+
+      <div id="certStamp">
+        <div class="sig">Professor(a) / Responsável</div>
+        <div class="sig">Coordenação</div>
+      </div>
+
+      <div id="certBtns">
+        <button class="certBtn" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+        <button class="certBtn" onclick="closeCert()">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- =========================================================
+     [FIM] C) CERTIFICADO
+========================================================= -->
+
+<script>
+/* =========================================================
+   [INÍCIO] 1) ESTADO / PROGRESSO
+========================================================= */
+const state = {
+  student:{ name:"", turma:"", escola:"" },
+  done:{ a1:false, a2:false, a3:false, a4:false, a5:false, a6:false, a7:false, a8:false },
+  pacmanWon:false
+};
+/* =========================================================
+   [FIM] 1) ESTADO
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 2) NARRAÇÕES (pt-BR)
+========================================================= */
+const narrations = {
+  global: "Olá! Esta é a aula 7. Você vai aprender bilhete, recado e aviso. Vai identificar tipos, reescrever com clareza, produzir textos e fazer uma sopa de letras e concluir o Pac-Man pedagógico. Conclua tudo para liberar o certificado premium.",
+  a1: "Atividade 1. Leia o texto e escolha se é bilhete, recado ou aviso.",
+  a2: "Atividade 2. Marque os campos essenciais de um texto funcional.",
+  a3: "Atividade 3. Reescreva um texto ruim com clareza, pontuação e conectivo.",
+  a4: "Atividade 4. Escreva um bilhete completo com destinatário, horário, pedido e assinatura.",
+  a5: "Atividade 5. Escreva um aviso com título em maiúsculo, data, horário e orientação.",
+  a6: "Atividade 6. Encontre as palavras na sopa de letras e marque as encontradas.",
+  a7: "Atividade 7. Faça a revisão final e escreva um título curto.",
+  a8: "Atividade 8. Abra o Pac-Man pedagógico, use as setas do teclado e coma apenas as palavras corretas do texto funcional."
+};
+/* =========================================================
+   [FIM] 2) NARRAÇÕES
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 3) ENTRADA
+========================================================= */
+const inName   = document.getElementById("inName");
+const inClass  = document.getElementById("inClass");
+const inSchool = document.getElementById("inSchool");
+const btnEnter = document.getElementById("btnEnter");
+
+[inName,inClass,inSchool].forEach(el=>{
+  el.addEventListener("input", ()=>{
+    btnEnter.disabled = !(inName.value.trim() && inClass.value.trim() && inSchool.value.trim());
+  });
+});
+
+function demoFill(){
+  inName.value = "Aluno(a) Exemplo";
+  inClass.value = "EJA 4ª Etapa";
+  inSchool.value = "Escola Estadual Exemplo";
+  btnEnter.disabled = false;
+}
+
+function enterLesson(){
+  state.student.name   = inName.value.trim();
+  state.student.turma  = inClass.value.trim();
+  state.student.escola = inSchool.value.trim();
+
+  document.getElementById("uiName").textContent = state.student.name;
+  document.getElementById("uiClass").textContent = state.student.turma;
+  document.getElementById("uiSchool").textContent = state.student.escola;
+
+  document.getElementById("startOverlay").style.display = "none";
+  document.getElementById("wrap").style.display = "flex";
+
+  // monta a sopa de letras ao entrar
+  buildWordSearch();
+  speakPT(narrations.global);
+}
+/* =========================================================
+   [FIM] 3) ENTRADA
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 4) NARRADOR (SpeechSynthesis)
+========================================================= */
+function speakPT(text){
+  try{
+    if(!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "pt-BR";
+    u.rate = 0.95;
+    u.pitch = 1.0;
+    window.speechSynthesis.speak(u);
+  }catch(e){ console.log(e); }
+}
+/* =========================================================
+   [FIM] 4) NARRADOR
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 5) BAIXA VISÃO
+========================================================= */
+function toggleLowVision(){
+  document.body.classList.toggle("lowVision");
+  speakPT(document.body.classList.contains("lowVision") ? "Modo baixa visão ativado." : "Modo baixa visão desativado.");
+}
+/* =========================================================
+   [FIM] 5) BAIXA VISÃO
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 6) PROGRESSO + CERTIFICADO
+========================================================= */
+function showOk(key, ok){
+  const okEl = document.getElementById(key+"ok");
+  const msgEl = document.getElementById(key+"msg");
+  if(okEl) okEl.style.display = ok ? "inline-block" : "none";
+  if(msgEl) msgEl.style.display = ok ? "none" : "block";
+  state.done[key] = ok;
+  refreshProgress();
+}
+
+function refreshProgress(){
+  const total = Object.keys(state.done).length;
+  const done  = Object.values(state.done).filter(Boolean).length;
+  const pct   = Math.round((done/total)*100);
+
+  document.getElementById("uiProg").textContent = pct + "%";
+  document.getElementById("progFill").style.width = pct + "%";
+
+  const unlocked = (done === total);
+  document.getElementById("btnCert").disabled  = !unlocked;
+  document.getElementById("btnCert2").disabled = !unlocked;
+  const cert3 = document.getElementById("btnCert3");
+  if(cert3) cert3.disabled = !unlocked;
+
+  const hint = document.getElementById("certHint");
+  if(unlocked){
+    hint.innerHTML = "✅ Liberado! Clique em <b>🏅 Abrir certificado</b>.";
+    speakPT("Parabéns! Você concluiu a aula 7. O certificado está liberado.");
+  }else{
+    hint.innerHTML = "🔒 Ainda bloqueado: conclua todas as atividades.";
+  }
+}
+/* =========================================================
+   [FIM] 6) PROGRESSO
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 7) UTILITÁRIOS
+========================================================= */
+function countPunct(text){ return (text.match(/[.!?]/g) || []).length; }
+function hasConn(low){
+  return low.includes("porque") || low.includes(" mas ") || low.startsWith("mas ") ||
+         low.includes("então") || low.includes("entao") || low.includes("também") || low.includes("tambem");
+}
+function countLines(text){
+  return text.split("\n").map(s=>s.trim()).filter(Boolean).length;
+}
+/* =========================================================
+   [FIM] 7) UTILITÁRIOS
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 8) CONFERIR — A1 a A7
+========================================================= */
+function checkA1(){
+  const v = document.getElementById("a1sel").value;
+  // gabarito: Bilhete (curto, pessoal, para Maria)
+  const ok = (v === "bilhete");
+  showOk("a1", ok);
+}
+
+function checkA2(){
+  const c1 = document.getElementById("a2c1").checked;
+  const c2 = document.getElementById("a2c2").checked;
+  const c3 = document.getElementById("a2c3").checked;
+  const c4 = document.getElementById("a2c4").checked;
+  const c5 = document.getElementById("a2c5").checked;
+  const c6 = document.getElementById("a2c6").checked; // pegadinha: não pode marcar como obrigatório
+
+  const correctCount = [c1,c2,c3,c4,c5].filter(Boolean).length;
+  const ok = (correctCount >= 4) && (c6 === false);
+  showOk("a2", ok);
+}
+
+function checkA3(){
+  const t = document.getElementById("a3txt").value.trim();
+  const low = t.toLowerCase();
+  const ok = (countPunct(t) >= 2) && hasConn(low) && (t.length >= 45);
+  showOk("a3", ok);
+}
+
+function checkA4(){
+  const t = document.getElementById("a4txt").value.trim();
+  const low = t.toLowerCase();
+  const lines = countLines(t);
+
+  // Regras: 6 linhas + deve ter sinal de destinatário (nome + vírgula OU "para") + horário (número) + assinatura (um nome no final)
+  const hasTo = t.includes(",") || low.includes("para ");
+  const hasTime = /\b\d{1,2}\b/.test(t) || low.includes("hora") || low.includes("h");
+  const hasSign = t.split("\n").slice(-2).join(" ").trim().length >= 4; // assinatura simples
+
+  const ok = (lines >= 6) && hasTo && hasTime && hasSign;
+  showOk("a4", ok);
+}
+
+function checkA5(){
+  const t = document.getElementById("a5txt").value.trim();
+  const lines = countLines(t);
+
+  // Título em maiúsculo na primeira linha
+  const firstLine = (t.split("\n")[0] || "").trim();
+  const titleOk = firstLine && (firstLine === firstLine.toUpperCase()) && (firstLine.length >= 6);
+
+  // precisa ter data/horário (número ou "dia"/"horário") e orientação (palavra "favor", "proibido", "compareça", "trazer", etc.)
+  const low = t.toLowerCase();
+  const hasDateTime = /\b\d{1,2}\b/.test(t) || low.includes("dia") || low.includes("hor") || low.includes("h");
+  const hasGuidance = low.includes("favor") || low.includes("proib") || low.includes("compare") || low.includes("traz") || low.includes("deve") || low.includes("atenção") || low.includes("atencao");
+
+  const ok = titleOk && (lines >= 5) && hasDateTime && hasGuidance;
+  showOk("a5", ok);
+}
+
+function checkA6(){
+  const ok =
+    document.getElementById("w1").checked &&
+    document.getElementById("w2").checked &&
+    document.getElementById("w3").checked &&
+    document.getElementById("w4").checked &&
+    document.getElementById("w5").checked &&
+    document.getElementById("w6").checked &&
+    document.getElementById("w7").checked &&
+    document.getElementById("w8").checked;
+  showOk("a6", ok);
+}
+
+
+
+function checkA8(){
+  const ok = !!state.pacmanWon;
+  showOk("a8", ok);
+}
+
+const PACMAN_DATA_URL = "data:text/html;base64,PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9InB0LUJSIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0idXRmLTgiIC8+CiAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCxpbml0aWFsLXNjYWxlPTEsdmlld3BvcnQtZml0PWNvdmVyIiAvPgogIDx0aXRsZT5QYWMtTWFuIEZhbGFuZ2UgUHJvIOKAlCBSZXNwb25zaXZvPC90aXRsZT4KCiAgPHN0eWxlPgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxKSBWQVJJw4FWRUlTIEdFUkFJUyBETyBURU1BCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIEFxdWkgZmljYW0gYXMgY29yZXMgcHJpbmNpcGFpcyBkbyBqb2dvLgogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICA6cm9vdHsKICAgICAgLS1iZzojMDUwNzBkOwogICAgICAtLXBhbmVsOiMwZDExMWE7CiAgICAgIC0tY3lhbjojMDBlNWZmOwogICAgICAtLXllbGxvdzojZmZkNDAwOwogICAgICAtLWdyZWVuOiM5OGZmNjY7CiAgICAgIC0tcmVkOiNmZjVjN2E7CiAgICAgIC0tcGluazojZmYyZDU1OwogICAgICAtLXdoaXRlOiNmZmZmZmY7CiAgICAgIC0tYmx1ZVdhbGw6IzFiNmNmZjsKICAgICAgLS1ibHVlR2xvdzojNzRiM2ZmOwogICAgICAtLXBpbGw6IzEzMTkyNjsKICAgICAgLS1ib3JkZXI6IzJiMzI0NDsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDIpIFJFU0VUIELDgVNJQ08KICAgICAgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgR2FyYW50ZSBxdWUgcGFkZGluZyBlIGJvcmRhIG7Do28gcXVlYnJlbSBvIGPDoWxjdWxvLgogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICAqewogICAgICBib3gtc2l6aW5nOmJvcmRlci1ib3g7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAzKSBIVE1MIEUgQk9EWQogICAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgICAgICAtIFVzYSBhbHR1cmEgcmVhbCBkYSB0ZWxhCiAgICAgICAtIEV2aXRhIGNvcnRlIGxhdGVyYWwKICAgICAgIC0gTWFudMOpbSBmdW5kbyBlc2N1cm8KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgaHRtbCwgYm9keXsKICAgICAgbWFyZ2luOjA7CiAgICAgIHdpZHRoOjEwMCU7CiAgICAgIG1pbi1oZWlnaHQ6MTAwJTsKICAgICAgb3ZlcmZsb3cteDpoaWRkZW47CiAgICAgIGJhY2tncm91bmQ6CiAgICAgICAgcmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCB0b3AsICMxMTE4MjcgMCUsICMwNTA3MGQgNTUlKSwKICAgICAgICAjMDUwNzBkOwogICAgICBjb2xvcjojZmZmOwogICAgICBmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOwogICAgfQoKICAgIGJvZHl7CiAgICAgIG1pbi1oZWlnaHQ6MTAwc3ZoOwogICAgICBwYWRkaW5nOjEwcHg7CiAgICAgIGRpc3BsYXk6ZmxleDsKICAgICAgYWxpZ24taXRlbXM6c3RyZXRjaDsKICAgICAganVzdGlmeS1jb250ZW50OmNlbnRlcjsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDQpIENBSVhBIFBSSU5DSVBBTCBETyBBUFAKICAgICAgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgRXN0YSBjYWl4YSBzZWd1cmEgdG9kbyBvIGpvZ28uCiAgICAgICBFbGEgY3Jlc2NlIHBhcmEgb2N1cGFyIGEgdGVsYSBzZW0gY29ydGFyLgogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICAuYXBwewogICAgICB3aWR0aDptaW4oMTQwMHB4LCAxMDAlKTsKICAgICAgbWluLWhlaWdodDpjYWxjKDEwMHN2aCAtIDIwcHgpOwogICAgICBiYWNrZ3JvdW5kOnJnYmEoNywxMCwxOCwuOTYpOwogICAgICBib3JkZXI6M3B4IHNvbGlkIHZhcigtLWN5YW4pOwogICAgICBib3JkZXItcmFkaXVzOjIycHg7CiAgICAgIHBhZGRpbmc6MTJweDsKICAgICAgYm94LXNoYWRvdzoKICAgICAgICAwIDAgMjRweCByZ2JhKDAsMjI5LDI1NSwuMjUpLAogICAgICAgIDAgMCA4MHB4IHJnYmEoMCwyMjksMjU1LC4wOCk7CiAgICAgIGRpc3BsYXk6ZmxleDsKICAgICAgZmxleC1kaXJlY3Rpb246Y29sdW1uOwogICAgICBnYXA6MTJweDsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDUpIEJBUlJBIFNVUEVSSU9SCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIFRvcG8gY29tIHTDrXR1bG8sIEhVRCBlIGJvdMO1ZXMuCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIC50b3BiYXJ7CiAgICAgIGRpc3BsYXk6ZmxleDsKICAgICAgZ2FwOjEycHg7CiAgICAgIGp1c3RpZnktY29udGVudDpzcGFjZS1iZXR3ZWVuOwogICAgICBhbGlnbi1pdGVtczpjZW50ZXI7CiAgICAgIGZsZXgtd3JhcDp3cmFwOwogICAgICBmb250LWZhbWlseToiQ291cmllciBOZXciLCBtb25vc3BhY2U7CiAgICB9CgogICAgLnRpdGxlewogICAgICBmb250LXdlaWdodDo5MDA7CiAgICAgIGZvbnQtc2l6ZTpjbGFtcCgxOHB4LCAydncsIDI2cHgpOwogICAgICBsZXR0ZXItc3BhY2luZzoxcHg7CiAgICAgIGNvbG9yOiNmZmY7CiAgICAgIHRleHQtc2hhZG93OjAgMCAxMHB4IHJnYmEoMCwyMjksMjU1LC4zNSk7CiAgICB9CgogICAgLmh1ZHsKICAgICAgZGlzcGxheTpmbGV4OwogICAgICBnYXA6OHB4OwogICAgICBmbGV4LXdyYXA6d3JhcDsKICAgICAgYWxpZ24taXRlbXM6Y2VudGVyOwogICAgfQoKICAgIC5waWxsewogICAgICBiYWNrZ3JvdW5kOnZhcigtLXBpbGwpOwogICAgICBib3JkZXI6MnB4IHNvbGlkIHZhcigtLWJvcmRlcik7CiAgICAgIGJvcmRlci1yYWRpdXM6OTk5cHg7CiAgICAgIHBhZGRpbmc6OHB4IDEycHg7CiAgICAgIGZvbnQtd2VpZ2h0OjkwMDsKICAgICAgZm9udC1zaXplOjEzcHg7CiAgICAgIGNvbG9yOiNmZmY7CiAgICAgIHdoaXRlLXNwYWNlOm5vd3JhcDsKICAgIH0KCiAgICAuYnRuewogICAgICBhcHBlYXJhbmNlOm5vbmU7CiAgICAgIGJvcmRlcjpub25lOwogICAgICBib3JkZXItcmFkaXVzOjEycHg7CiAgICAgIHBhZGRpbmc6MTBweCAxNHB4OwogICAgICBmb250LXdlaWdodDo5MDA7CiAgICAgIGN1cnNvcjpwb2ludGVyOwogICAgICBjb2xvcjojZmZmOwogICAgICBiYWNrZ3JvdW5kOiMxZjI5Mzc7CiAgICAgIGJvcmRlcjoycHggc29saWQgIzRiNTU2MzsKICAgICAgdHJhbnNpdGlvbjp0cmFuc2Zvcm0gLjEycyBlYXNlLCBmaWx0ZXIgLjEycyBlYXNlOwogICAgfQoKICAgIC5idG46aG92ZXJ7CiAgICAgIHRyYW5zZm9ybTp0cmFuc2xhdGVZKC0xcHgpOwogICAgICBmaWx0ZXI6YnJpZ2h0bmVzcygxLjA2KTsKICAgIH0KCiAgICAuYnRuLnByaW1hcnl7CiAgICAgIGJhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDE4MGRlZywgIzAwYjdmZiwgIzAwNzdmZik7CiAgICAgIGJvcmRlci1jb2xvcjojNWFkN2ZmOwogICAgfQoKICAgIC5idG4ucGlua3sKICAgICAgYmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTgwZGVnLCAjZmY0ZjgzLCAjZmYyZDU1KTsKICAgICAgYm9yZGVyLWNvbG9yOiNmZjlhYjE7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICA2KSDDgVJFQSBQUklOQ0lQQUwKICAgICAgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgLSBObyBQQzogam9nbyArIGxhdGVyYWwKICAgICAgIC0gTm8gY2VsdWxhcjogZW1waWxoYSB0dWRvCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIC5tYWluewogICAgICBmbGV4OjE7CiAgICAgIGRpc3BsYXk6Z3JpZDsKICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOm1pbm1heCgwLCAxZnIpIDMyMHB4OwogICAgICBnYXA6MTRweDsKICAgICAgYWxpZ24taXRlbXM6c3RyZXRjaDsKICAgICAgbWluLWhlaWdodDowOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgNykgw4FSRUEgRE8gSk9HTwogICAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgICAgICBBIMOhcmVhIGRvIGNhbnZhcyBjcmVzY2Ugc2VtIGNvcnRhci4KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgLmJvYXJkV3JhcHsKICAgICAgYmFja2dyb3VuZDojMDIwNDBhOwogICAgICBib3JkZXI6MnB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjE0KTsKICAgICAgYm9yZGVyLXJhZGl1czoxOHB4OwogICAgICBwYWRkaW5nOjEwcHg7CiAgICAgIHBvc2l0aW9uOnJlbGF0aXZlOwogICAgICBvdmVyZmxvdzpoaWRkZW47CiAgICAgIGRpc3BsYXk6ZmxleDsKICAgICAgZmxleC1kaXJlY3Rpb246Y29sdW1uOwogICAgICBtaW4taGVpZ2h0OjA7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICA4KSBTVEFHRSBSRVNQT05TSVZPCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIEVzdGEgcGFydGUgw6kgYSBjaGF2ZSBwYXJhIG7Do28gY29ydGFyOgogICAgICAgLSB1c2EgYSBwcm9wb3LDp8OjbyByZWFsIGRvIGNhbnZhcwogICAgICAgLSBubyBkZXNrdG9wIGNhYmUgbmEgdGVsYQogICAgICAgLSBubyBjZWx1bGFyIGRpbWludWkgc2VtIGVzdG91cmFyCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIC5jYW52YXNTdGFnZXsKICAgICAgcG9zaXRpb246cmVsYXRpdmU7CiAgICAgIHdpZHRoOjEwMCU7CiAgICAgIGZsZXg6MTsKICAgICAgbWluLWhlaWdodDozMDBweDsKICAgICAgbWF4LWhlaWdodDpjYWxjKDEwMHN2aCAtIDIyMHB4KTsKICAgICAgZGlzcGxheTpmbGV4OwogICAgICBhbGlnbi1pdGVtczpjZW50ZXI7CiAgICAgIGp1c3RpZnktY29udGVudDpjZW50ZXI7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICA5KSBDQU5WQVMKICAgICAgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgTyBjYW52YXMgdXNhOgogICAgICAgLSBsYXJndXJhIG3DoXhpbWEgZGlzcG9uw612ZWwKICAgICAgIC0gYWx0dXJhIGF1dG9tw6F0aWNhCiAgICAgICAtIGxpbWl0ZSBkZSBhbHR1cmEgcGFyYSBuw6NvIGNvcnRhcgogICAgICAgLSBhc3BlY3RvIHByZXNlcnZhZG8KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgY2FudmFzewogICAgICBkaXNwbGF5OmJsb2NrOwogICAgICB3aWR0aDphdXRvOwogICAgICBoZWlnaHQ6YXV0bzsKICAgICAgbWF4LXdpZHRoOjEwMCU7CiAgICAgIG1heC1oZWlnaHQ6MTAwJTsKICAgICAgYXNwZWN0LXJhdGlvOjg2NCAvIDY3MjsKICAgICAgYmFja2dyb3VuZDojMDAwOwogICAgICBib3JkZXI6MnB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjE4KTsKICAgICAgYm9yZGVyLXJhZGl1czoxMnB4OwogICAgICBpbWFnZS1yZW5kZXJpbmc6cGl4ZWxhdGVkOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMTApIExBVEVSQUwKICAgICAgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgQ2FyZHMgZGUgYXBvaW8uCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIC5zaWRlewogICAgICBkaXNwbGF5OmZsZXg7CiAgICAgIGZsZXgtZGlyZWN0aW9uOmNvbHVtbjsKICAgICAgZ2FwOjEycHg7CiAgICAgIG1pbi1oZWlnaHQ6MDsKICAgIH0KCiAgICAuY2FyZHsKICAgICAgYmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4wMyk7CiAgICAgIGJvcmRlcjoycHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMTApOwogICAgICBib3JkZXItcmFkaXVzOjE2cHg7CiAgICAgIHBhZGRpbmc6MTJweDsKICAgIH0KCiAgICAuY2FyZCBoM3sKICAgICAgbWFyZ2luOjAgMCA4cHggMDsKICAgICAgZm9udC1zaXplOjE2cHg7CiAgICAgIGNvbG9yOiNmZmY7CiAgICAgIGZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyIsIG1vbm9zcGFjZTsKICAgIH0KCiAgICAuc21hbGx7CiAgICAgIGZvbnQtc2l6ZToxM3B4OwogICAgICBsaW5lLWhlaWdodDoxLjQ1OwogICAgICBjb2xvcjojZDdlMWZmOwogICAgfQoKICAgIC5sZWdlbmR7CiAgICAgIGRpc3BsYXk6ZmxleDsKICAgICAgZmxleC13cmFwOndyYXA7CiAgICAgIGdhcDo4cHg7CiAgICAgIG1hcmdpbi10b3A6OHB4OwogICAgfQoKICAgIC5jaGlwewogICAgICBmb250LXNpemU6MTJweDsKICAgICAgZm9udC13ZWlnaHQ6OTAwOwogICAgICBib3JkZXItcmFkaXVzOjk5OXB4OwogICAgICBwYWRkaW5nOjdweCAxMHB4OwogICAgICBiYWNrZ3JvdW5kOiMxMTE4Mjc7CiAgICAgIGJvcmRlcjoycHggc29saWQgIzJiMzI0NDsKICAgIH0KCiAgICAud29yZExpc3R7CiAgICAgIGRpc3BsYXk6Z3JpZDsKICAgICAgZ2FwOjhweDsKICAgICAgbWF4LWhlaWdodDoyNjBweDsKICAgICAgb3ZlcmZsb3c6YXV0bzsKICAgICAgcGFkZGluZy1yaWdodDo0cHg7CiAgICB9CgogICAgLndvcmRJdGVtewogICAgICBib3JkZXI6MnB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjEwKTsKICAgICAgYmFja2dyb3VuZDojMGQxMzIwOwogICAgICBib3JkZXItcmFkaXVzOjEycHg7CiAgICAgIHBhZGRpbmc6OHB4IDEwcHg7CiAgICAgIGZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyIsIG1vbm9zcGFjZTsKICAgICAgZm9udC1zaXplOjEzcHg7CiAgICAgIGZvbnQtd2VpZ2h0OjkwMDsKICAgICAgY29sb3I6I2ZmZjsKICAgIH0KCiAgICAud29yZEl0ZW0uZG9uZXsKICAgICAgY29sb3I6Izk4ZmY2NjsKICAgICAgYm9yZGVyLWNvbG9yOnJnYmEoMTUyLDI1NSwxMDIsLjQpOwogICAgICBiYWNrZ3JvdW5kOiMwZjFjMGY7CiAgICAgIHRleHQtZGVjb3JhdGlvbjpsaW5lLXRocm91Z2g7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxMSkgT1ZFUkxBWSBERSBJTsONQ0lPIC8gVklUw5NSSUEgLyBERVJST1RBCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIEZpY2Egc29icmUgYSDDoXJlYSBkbyBqb2dvLgogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICAub3ZlcmxheXsKICAgICAgcG9zaXRpb246YWJzb2x1dGU7CiAgICAgIGluc2V0OjA7CiAgICAgIGJhY2tncm91bmQ6cmdiYSgwLDAsMCwuNzIpOwogICAgICBkaXNwbGF5OmZsZXg7CiAgICAgIGFsaWduLWl0ZW1zOmNlbnRlcjsKICAgICAganVzdGlmeS1jb250ZW50OmNlbnRlcjsKICAgICAgdGV4dC1hbGlnbjpjZW50ZXI7CiAgICAgIHBhZGRpbmc6MjBweDsKICAgICAgei1pbmRleDoxMDsKICAgICAgYm9yZGVyLXJhZGl1czoxMnB4OwogICAgfQoKICAgIC5vdmVybGF5Q2FyZHsKICAgICAgd2lkdGg6bWluKDY4MHB4LCA5NCUpOwogICAgICBiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxODBkZWcsIHJnYmEoNiwxMCwxOCwuOTYpLCByZ2JhKDEyLDE3LDI2LC45NikpOwogICAgICBib3JkZXI6M3B4IHNvbGlkIHZhcigtLWN5YW4pOwogICAgICBib3JkZXItcmFkaXVzOjIwcHg7CiAgICAgIHBhZGRpbmc6MjJweDsKICAgICAgYm94LXNoYWRvdzowIDAgMjVweCByZ2JhKDAsMjI5LDI1NSwuMjUpOwogICAgfQoKICAgIC5vdmVybGF5VGl0bGV7CiAgICAgIG1hcmdpbjowIDAgMTBweCAwOwogICAgICBmb250LWZhbWlseToiQ291cmllciBOZXciLCBtb25vc3BhY2U7CiAgICAgIGZvbnQtc2l6ZTpjbGFtcCgyNHB4LCA0dncsIDM0cHgpOwogICAgICBmb250LXdlaWdodDo5MDA7CiAgICAgIGxldHRlci1zcGFjaW5nOjFweDsKICAgICAgY29sb3I6I2ZmZjsKICAgICAgdGV4dC1zaGFkb3c6MCAwIDE2cHggcmdiYSgwLDIyOSwyNTUsLjM1KTsKICAgIH0KCiAgICAub3ZlcmxheVRleHR7CiAgICAgIGNvbG9yOiNkOWU0ZmY7CiAgICAgIGxpbmUtaGVpZ2h0OjEuNTU7CiAgICAgIGZvbnQtc2l6ZToxNXB4OwogICAgICBtYXJnaW4tYm90dG9tOjE0cHg7CiAgICB9CgogICAgLm92ZXJsYXlCdXR0b25zewogICAgICBkaXNwbGF5OmZsZXg7CiAgICAgIGZsZXgtd3JhcDp3cmFwOwogICAgICBqdXN0aWZ5LWNvbnRlbnQ6Y2VudGVyOwogICAgICBnYXA6MTBweDsKICAgICAgbWFyZ2luLXRvcDoxMHB4OwogICAgfQoKICAgIC5mb290ZXJOb3RlewogICAgICBtYXJnaW4tdG9wOjhweDsKICAgICAgdGV4dC1hbGlnbjpjZW50ZXI7CiAgICAgIGZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyIsIG1vbm9zcGFjZTsKICAgICAgZm9udC1zaXplOjEycHg7CiAgICAgIGNvbG9yOiNhYWI3ZDg7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxMikgUkVTUE9OU0lWTyBUQUJMRVQgLyBDRUxVTEFSCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIEBtZWRpYSAobWF4LXdpZHRoOiA5ODBweCl7CiAgICAgIC5tYWluewogICAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczoxZnI7CiAgICAgIH0KCiAgICAgIC5zaWRlewogICAgICAgIG9yZGVyOjI7CiAgICAgIH0KCiAgICAgIC5ib2FyZFdyYXB7CiAgICAgICAgb3JkZXI6MTsKICAgICAgfQoKICAgICAgLmNhbnZhc1N0YWdlewogICAgICAgIG1heC1oZWlnaHQ6bm9uZTsKICAgICAgICBtaW4taGVpZ2h0OjIyMHB4OwogICAgICB9CgogICAgICAud29yZExpc3R7CiAgICAgICAgbWF4LWhlaWdodDoxODBweDsKICAgICAgfQogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMTMpIFJFU1BPTlNJVk8gQ0VMVUxBUiBQRVFVRU5PCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIEBtZWRpYSAobWF4LXdpZHRoOiA1NjBweCl7CiAgICAgIGJvZHl7CiAgICAgICAgcGFkZGluZzo2cHg7CiAgICAgIH0KCiAgICAgIC5hcHB7CiAgICAgICAgbWluLWhlaWdodDpjYWxjKDEwMHN2aCAtIDEycHgpOwogICAgICAgIHBhZGRpbmc6OHB4OwogICAgICAgIGJvcmRlci1yYWRpdXM6MTZweDsKICAgICAgfQoKICAgICAgLnRvcGJhcnsKICAgICAgICBnYXA6OHB4OwogICAgICB9CgogICAgICAucGlsbHsKICAgICAgICBmb250LXNpemU6MTFweDsKICAgICAgICBwYWRkaW5nOjdweCA5cHg7CiAgICAgIH0KCiAgICAgIC5idG57CiAgICAgICAgZm9udC1zaXplOjEycHg7CiAgICAgICAgcGFkZGluZzo5cHggMTFweDsKICAgICAgfQoKICAgICAgLmNhcmR7CiAgICAgICAgcGFkZGluZzoxMHB4OwogICAgICB9CgogICAgICAuY2FudmFzU3RhZ2V7CiAgICAgICAgbWluLWhlaWdodDoxODBweDsKICAgICAgfQogICAgfQogIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CgogIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICBBUFAgUFJJTkNJUEFMCiAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogIDxkaXYgY2xhc3M9ImFwcCI+CgogICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgIFRPUE8gRE8gSk9HTwogICAgICAgICAtIHTDrXR1bG8KICAgICAgICAgLSBwb250dWHDp8OjbwogICAgICAgICAtIHZpZGFzCiAgICAgICAgIC0gcXVhbnRpZGFkZSByZXN0YW50ZQogICAgICAgICAtIGJvdMO1ZXMKICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgPGRpdiBjbGFzcz0idG9wYmFyIj4KICAgICAgPGRpdiBjbGFzcz0idGl0bGUiPvCfjq4gUEFDLU1BTiBGQUxBTkdFIFBSTyDigJQgTEFCSVJJTlRPPC9kaXY+CgogICAgICA8ZGl2IGNsYXNzPSJodWQiPgogICAgICAgIDxzcGFuIGNsYXNzPSJwaWxsIj7irZAgUE9OVE9TOiA8YiBpZD0ic2NvcmUiPjA8L2I+PC9zcGFuPgogICAgICAgIDxzcGFuIGNsYXNzPSJwaWxsIj7inaTvuI8gVklEQVM6IDxiIGlkPSJsaXZlcyI+MzwvYj48L3NwYW4+CiAgICAgICAgPHNwYW4gY2xhc3M9InBpbGwiPvCfjb3vuI8gUEFMQVZSQVM6IDxiIGlkPSJyZW1haW5pbmciPjA8L2I+PC9zcGFuPgoKICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gcHJpbWFyeSIgaWQ9ImJ0blN0YXJ0IiB0eXBlPSJidXR0b24iPuKWtiBJTklDSUFSPC9idXR0b24+CiAgICAgICAgPGJ1dHRvbiBjbGFzcz0iYnRuIiBpZD0iYnRuUmVzdGFydCIgdHlwZT0iYnV0dG9uIj7wn5SEIFJFSU5JQ0lBUjwvYnV0dG9uPgogICAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBwaW5rIiBpZD0iYnRuU291bmQiIHR5cGU9ImJ1dHRvbiI+8J+UiiBTT006IE9OPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CgogICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgIMOBUkVBIFBSSU5DSVBBTAogICAgICAgICAtIGVzcXVlcmRhOiBqb2dvCiAgICAgICAgIC0gZGlyZWl0YTogcGFpbmVsIGxhdGVyYWwKICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgPGRpdiBjbGFzcz0ibWFpbiI+CgogICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgICAgQkxPQ08gRE8gSk9HTwogICAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICAgIDxkaXYgY2xhc3M9ImJvYXJkV3JhcCI+CgogICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgICAgICBTVEFHRSBETyBDQU5WQVMKICAgICAgICAgICAgIEVzdGEgw6FyZWEgY29udHJvbGEgbyB0YW1hbmhvIGRvIGNhbnZhcyBlIGltcGVkZSBjb3J0ZS4KICAgICAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgIDxkaXYgY2xhc3M9ImNhbnZhc1N0YWdlIj4KCiAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgICAgICAgIENBTlZBUyBETyBKT0dPCiAgICAgICAgICAgICAgIHdpZHRoIGUgaGVpZ2h0IGludGVybm9zIGRlZmluZW0gYSByZXNvbHXDp8OjbyBsw7NnaWNhLgogICAgICAgICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgPGNhbnZhcyBpZD0iZ2FtZSIgd2lkdGg9Ijg2NCIgaGVpZ2h0PSI2NzIiPjwvY2FudmFzPgoKICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICAgICAgICAgT1ZFUkxBWQogICAgICAgICAgICAgICBhcGFyZWNlIG5vIGNvbWXDp28sIHZpdMOzcmlhIGUgZGVycm90YQogICAgICAgICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgPGRpdiBjbGFzcz0ib3ZlcmxheSIgaWQ9Im92ZXJsYXkiPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJvdmVybGF5Q2FyZCI+CiAgICAgICAgICAgICAgPGgxIGNsYXNzPSJvdmVybGF5VGl0bGUiIGlkPSJvdmVybGF5VGl0bGUiPlBBQy1NQU4gRkFMQU5HRSBQUk88L2gxPgogICAgICAgICAgICAgIDxkaXYgY2xhc3M9Im92ZXJsYXlUZXh0IiBpZD0ib3ZlcmxheVRleHQiPgogICAgICAgICAgICAgICAgQ29tYSBhcyA8Yj5wYWxhdnJhcyBjb3JyZXRhczwvYj4gZG8gdGVtYSBlIGZ1amEgZGFzIDxiPnBhbGF2cmFzIGVycmFkYXM8L2I+Ljxicj4KICAgICAgICAgICAgICAgIFVzZSBhcyBzZXRhcyBkbyB0ZWNsYWRvIHBhcmEgbW92ZXIgbyBQYWMtTWFuIHBlbG8gbGFiaXJpbnRvLgogICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3M9Im92ZXJsYXlCdXR0b25zIj4KICAgICAgICAgICAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBwcmltYXJ5IiBpZD0ib3ZlcmxheVN0YXJ0IiB0eXBlPSJidXR0b24iPuKWtiBDT01Fw4dBUjwvYnV0dG9uPgogICAgICAgICAgICAgICAgPGJ1dHRvbiBjbGFzcz0iYnRuIiBpZD0ib3ZlcmxheVJlc3RhcnQiIHR5cGU9ImJ1dHRvbiI+8J+UhCBOT1ZPIEpPR088L2J1dHRvbj4KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICAgICAgIFJPREFQw4kgREUgSU5TVFJVw4fDg08KICAgICAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgIDxkaXYgY2xhc3M9ImZvb3Rlck5vdGUiPgogICAgICAgICAgVXNlIOKshe+4jyDirIbvuI8g4p6h77iPIOKsh++4jyBwYXJhIG1vdmVyLgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KCiAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICAgICBMQVRFUkFMCiAgICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgPGRpdiBjbGFzcz0ic2lkZSI+CgogICAgICAgIDxkaXYgY2xhc3M9ImNhcmQiPgogICAgICAgICAgPGgzPk1JU1PDg088L2gzPgogICAgICAgICAgPGRpdiBjbGFzcz0ic21hbGwiPgogICAgICAgICAgICBQZWd1ZSBhcGVuYXMgYXMgcGFsYXZyYXMgY29ycmV0YXMgZG8gdGVtYS48YnI+PGJyPgogICAgICAgICAgICBBcyBwYWxhdnJhcyBlcnJhZGFzIHZpcmFtIGZhbnRhc21hcyBlIHBlcnNlZ3VlbSB2b2PDqi4KICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgIDxkaXYgY2xhc3M9ImxlZ2VuZCI+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJjaGlwIj7wn5+hIFBhYy1NYW48L3NwYW4+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJjaGlwIj7wn5+iIFBhbGF2cmEgY29ycmV0YTwvc3Bhbj4KICAgICAgICAgICAgPHNwYW4gY2xhc3M9ImNoaXAiPvCflLQgUGFsYXZyYSBlcnJhZGE8L3NwYW4+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJjaGlwIj7wn5+mIFBhcmVkZTwvc3Bhbj4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkIj4KICAgICAgICAgIDxoMz5QQUxBVlJBUyBDRVJUQVM8L2gzPgogICAgICAgICAgPGRpdiBjbGFzcz0id29yZExpc3QiIGlkPSJnb29kV29yZExpc3QiPjwvZGl2PgogICAgICAgIDwvZGl2PgoKICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkIj4KICAgICAgICAgIDxoMz5DT05UUk9MRVM8L2gzPgogICAgICAgICAgPGRpdiBjbGFzcz0ic21hbGwiPgogICAgICAgICAgICDirIXvuI8gbW92ZXIgcGFyYSBhIGVzcXVlcmRhPGJyPgogICAgICAgICAgICDinqHvuI8gbW92ZXIgcGFyYSBhIGRpcmVpdGE8YnI+CiAgICAgICAgICAgIOKshu+4jyBtb3ZlciBwYXJhIGNpbWE8YnI+CiAgICAgICAgICAgIOKsh++4jyBtb3ZlciBwYXJhIGJhaXhvPGJyPjxicj4KICAgICAgICAgICAgUXVhbmRvIHBlcmRlciB0b2RhcyBhcyB2aWRhcywgbyBqb2dvIHJlaW5pY2lhLgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogIDwvZGl2PgoKICA8c2NyaXB0PgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxKSBSRUZFUsOKTkNJQVMgRE9TIEVMRU1FTlRPUyBIVE1MCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIEFxdWkgcGVnYW1vcyBvcyBlbGVtZW50b3MgZGEgdGVsYSBxdWUgbyBKYXZhU2NyaXB0IHVzYS4KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgY29uc3QgY2FudmFzID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImdhbWUiKTsKICAgIGNvbnN0IGN0eCA9IGNhbnZhcy5nZXRDb250ZXh0KCIyZCIpOwoKICAgIGNvbnN0IHNjb3JlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2NvcmUiKTsKICAgIGNvbnN0IGxpdmVzRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgibGl2ZXMiKTsKICAgIGNvbnN0IHJlbWFpbmluZ0VsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInJlbWFpbmluZyIpOwoKICAgIGNvbnN0IG92ZXJsYXkgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgib3ZlcmxheSIpOwogICAgY29uc3Qgb3ZlcmxheVRpdGxlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm92ZXJsYXlUaXRsZSIpOwogICAgY29uc3Qgb3ZlcmxheVRleHQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgib3ZlcmxheVRleHQiKTsKCiAgICBjb25zdCBnb29kV29yZExpc3RFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJnb29kV29yZExpc3QiKTsKCiAgICBjb25zdCBidG5TdGFydCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJidG5TdGFydCIpOwogICAgY29uc3QgYnRuUmVzdGFydCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJidG5SZXN0YXJ0Iik7CiAgICBjb25zdCBidG5Tb3VuZCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJidG5Tb3VuZCIpOwoKICAgIGNvbnN0IG92ZXJsYXlTdGFydCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJvdmVybGF5U3RhcnQiKTsKICAgIGNvbnN0IG92ZXJsYXlSZXN0YXJ0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm92ZXJsYXlSZXN0YXJ0Iik7CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAyKSBDT05GSUdVUkHDh8ODTyBETyBUQUJVTEVJUk8KICAgICAgIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgVElMRSA9IHRhbWFuaG8gZGUgY2FkYSBibG9jbyBkbyBsYWJpcmludG8KICAgICAgIENPTFMgPSBjb2x1bmFzCiAgICAgICBST1dTID0gbGluaGFzCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGNvbnN0IFRJTEUgPSAzMjsKICAgIGNvbnN0IENPTFMgPSAyNzsKICAgIGNvbnN0IFJPV1MgPSAyMTsKCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDMpIFBBTEFWUkFTIEJPQVMgRSBSVUlOUwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBjb25zdCBHT09EX1dPUkRTID0gWwogICAgICAiQklMSEVURSIsCiAgICAgICJSRUNBRE8iLAogICAgICAiQVZJU08iLAogICAgICAiSE9SQVJJTyIsCiAgICAgICJBU1NJTkFUVVJBIiwKICAgICAgIkRFU1RJTkFUQVJJTyIsCiAgICAgICJNRU5TQUdFTSIsCiAgICAgICJUSVRVTE8iCiAgICBdOwoKICAgIGNvbnN0IEJBRF9XT1JEUyA9IFsKICAgICAgIkZVVEVCT0wiLAogICAgICAiRElOT1NTQVVSTyIsCiAgICAgICJGTE9SRVNUQSIsCiAgICAgICJQTEFORVRBIgogICAgXTsKCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDQpIE1BUEEgRE8gTEFCSVJJTlRPCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgICMgPSBwYXJlZGUKICAgICAgIC4gPSB0cmlsaGEKICAgICAgIG8gPSBwb250byBlc3BlY2lhbCB2aXN1YWwKICAgICAgIFAgPSBwb250byBpbmljaWFsIGRvIFBhYy1NYW4KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgY29uc3QgTUFQID0gWwogICAgICAiIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiwKICAgICAgIiMuLi4uLi4uLi4uLi4jLi4uLi4uLi4uLi4uIyIsCiAgICAgICIjLiMjIyMuIyMjIyMuIy4jIyMjIy4jIyMjLiMiLAogICAgICAiI28jIyMjLiMjIyMjLiMuIyMjIyMuIyMjI28jIiwKICAgICAgIiMuIyMjIy4jIyMjIy4jLiMjIyMjLiMjIyMuIyIsCiAgICAgICIjLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLiMiLAogICAgICAiIy4jIyMjLiMuIyMjIyMjIyMjLiMuIyMjIy4jIiwKICAgICAgIiMuLi4uLi4jLi4uLiMuIy4uLi4jLi4uLi4uIyIsCiAgICAgICIjIyMjIyMuIyMjIyAjICMgIyMjIy4jIyMjIyMiLAogICAgICAiIyMjIyMjLiMgICAgICAgICAjLiMjIyMjIy4jIiwKICAgICAgIiMjIyMjIy4jICMjIyAjIyMgIy4jIyMjIyMuIyIsCiAgICAgICIjLi4uLi4uLi4uLiMgIy4uLi4uLi4uLi4jLiMiLAogICAgICAiIy4jIyMjLiMjIy4jICMuIyMjLiMjIyMuIy4jIiwKICAgICAgIiNvLi4uIy4uLi4uUCAuLi4uLiMuLi5vIy4uIyIsCiAgICAgICIjIyMuIy4jLiMjIyMjIyMjIy4jLiMuIyMjLiMiLAogICAgICAiIy4uLi4uIy4uLi4jLiMuLi4uIy4uLi4uIy4jIiwKICAgICAgIiMuIyMjIyMjIyMuIy4jLiMjIyMjIyMjLiMuIyIsCiAgICAgICIjLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLiMiLAogICAgICAiIy4jIyMjLiMjIyMjLiMuIyMjIyMuIyMjIy4jIiwKICAgICAgIiNvLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi5vIyIsCiAgICAgICIjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiCiAgICBdOwoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgNSkgRVNUQURPIERPIFRFQ0xBRE8KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgY29uc3Qga2V5cyA9IHsKICAgICAgbGVmdDpmYWxzZSwKICAgICAgcmlnaHQ6ZmFsc2UsCiAgICAgIHVwOmZhbHNlLAogICAgICBkb3duOmZhbHNlCiAgICB9OwoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgNikgw4FVRElPCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIE8gc29tIMOpIGdlcmFkbyBubyBuYXZlZ2Fkb3IgdmlhIFdlYiBBdWRpbyBBUEkuCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGxldCBhdWRpb0N0eCA9IG51bGw7CiAgICBsZXQgc291bmRFbmFibGVkID0gdHJ1ZTsKCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDcpIExPT1AgRSBFU1RBRE8gR0VSQUwgRE8gSk9HTwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBsZXQgbG9vcElkID0gbnVsbDsKICAgIGxldCBydW5uaW5nID0gZmFsc2U7CiAgICBsZXQgcGF1c2VkID0gdHJ1ZTsKICAgIGxldCBnYW1lID0gbnVsbDsKCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDgpIEZVTsOHw5VFUyBERSBTT00KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gZW5zdXJlQXVkaW8oKXsKICAgICAgaWYoIWF1ZGlvQ3R4KXsKICAgICAgICBhdWRpb0N0eCA9IG5ldyAod2luZG93LkF1ZGlvQ29udGV4dCB8fCB3aW5kb3cud2Via2l0QXVkaW9Db250ZXh0KSgpOwogICAgICB9CiAgICAgIGlmKGF1ZGlvQ3R4LnN0YXRlID09PSAic3VzcGVuZGVkIil7CiAgICAgICAgYXVkaW9DdHgucmVzdW1lKCk7CiAgICAgIH0KICAgIH0KCiAgICBmdW5jdGlvbiBiZWVwKGZyZXEgPSA0NDAsIGR1cmF0aW9uID0gMC4wOCwgdHlwZSA9ICJzcXVhcmUiLCB2b2x1bWUgPSAwLjAzKXsKICAgICAgaWYoIXNvdW5kRW5hYmxlZCkgcmV0dXJuOwoKICAgICAgZW5zdXJlQXVkaW8oKTsKCiAgICAgIGNvbnN0IG9zYyA9IGF1ZGlvQ3R4LmNyZWF0ZU9zY2lsbGF0b3IoKTsKICAgICAgY29uc3QgZ2FpbiA9IGF1ZGlvQ3R4LmNyZWF0ZUdhaW4oKTsKCiAgICAgIG9zYy50eXBlID0gdHlwZTsKICAgICAgb3NjLmZyZXF1ZW5jeS52YWx1ZSA9IGZyZXE7CiAgICAgIGdhaW4uZ2Fpbi52YWx1ZSA9IHZvbHVtZTsKCiAgICAgIG9zYy5jb25uZWN0KGdhaW4pOwogICAgICBnYWluLmNvbm5lY3QoYXVkaW9DdHguZGVzdGluYXRpb24pOwoKICAgICAgY29uc3Qgbm93ID0gYXVkaW9DdHguY3VycmVudFRpbWU7CiAgICAgIGdhaW4uZ2Fpbi5zZXRWYWx1ZUF0VGltZSh2b2x1bWUsIG5vdyk7CiAgICAgIGdhaW4uZ2Fpbi5leHBvbmVudGlhbFJhbXBUb1ZhbHVlQXRUaW1lKDAuMDAwMSwgbm93ICsgZHVyYXRpb24pOwoKICAgICAgb3NjLnN0YXJ0KG5vdyk7CiAgICAgIG9zYy5zdG9wKG5vdyArIGR1cmF0aW9uKTsKICAgIH0KCiAgICBmdW5jdGlvbiBlYXRTb3VuZCgpewogICAgICBiZWVwKDU4MCwgMC4wNSwgInNxdWFyZSIsIDAuMDMpOwogICAgfQoKICAgIGZ1bmN0aW9uIGhpdFNvdW5kKCl7CiAgICAgIGJlZXAoMTgwLCAwLjEyLCAic2F3dG9vdGgiLCAwLjA1KTsKICAgICAgc2V0VGltZW91dCgoKT0+YmVlcCgxMjAsIDAuMTYsICJzYXd0b290aCIsIDAuMDQpLCA2MCk7CiAgICB9CgogICAgZnVuY3Rpb24gd2luU291bmQoKXsKICAgICAgYmVlcCg2NjAsIDAuMDksICJzcXVhcmUiLCAwLjA0KTsKICAgICAgc2V0VGltZW91dCgoKT0+YmVlcCg4ODAsIDAuMDksICJzcXVhcmUiLCAwLjA0KSwgOTApOwogICAgICBzZXRUaW1lb3V0KCgpPT5iZWVwKDk5MCwgMC4xMiwgInNxdWFyZSIsIDAuMDQpLCAxODApOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgOSkgQ09OVkVSU8ODTyBFTlRSRSBUSUxFIEUgUElYRUwKICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gdGlsZVRvUGl4ZWwoY29sLCByb3cpewogICAgICByZXR1cm4gewogICAgICAgIHg6IGNvbCAqIFRJTEUgKyBUSUxFIC8gMiwKICAgICAgICB5OiByb3cgKiBUSUxFICsgVElMRSAvIDIKICAgICAgfTsKICAgIH0KCiAgICBmdW5jdGlvbiBwaXhlbFRvVGlsZSh4LCB5KXsKICAgICAgcmV0dXJuIHsKICAgICAgICBjb2w6IE1hdGguZmxvb3IoeCAvIFRJTEUpLAogICAgICAgIHJvdzogTWF0aC5mbG9vcih5IC8gVElMRSkKICAgICAgfTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDEwKSBWRVJJRklDQcOHw4NPIERFIFBBUkVERQogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiBpc1dhbGxBdChjb2wsIHJvdyl7CiAgICAgIGlmKHJvdyA8IDAgfHwgcm93ID49IFJPV1MgfHwgY29sIDwgMCB8fCBjb2wgPj0gQ09MUykgcmV0dXJuIHRydWU7CiAgICAgIHJldHVybiBNQVBbcm93XVtjb2xdID09PSAiIyI7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxMSkgVEVTVEUgREUgTU9WSU1FTlRPCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIFZlcmlmaWNhIHNlIHVtYSBlbnRpZGFkZSBwb2RlIGFuZGFyIHBhcmEgYSBwb3Npw6fDo28uCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIGNhbk1vdmVUbyh4LCB5LCByYWRpdXMgPSAxMil7CiAgICAgIGNvbnN0IHBvaW50cyA9IFsKICAgICAgICB7eDp4LXJhZGl1cywgeTp5LXJhZGl1c30sCiAgICAgICAge3g6eCtyYWRpdXMsIHk6eS1yYWRpdXN9LAogICAgICAgIHt4OngtcmFkaXVzLCB5OnkrcmFkaXVzfSwKICAgICAgICB7eDp4K3JhZGl1cywgeTp5K3JhZGl1c30KICAgICAgXTsKCiAgICAgIGZvcihjb25zdCBwIG9mIHBvaW50cyl7CiAgICAgICAgY29uc3QgdCA9IHBpeGVsVG9UaWxlKHAueCwgcC55KTsKICAgICAgICBpZihpc1dhbGxBdCh0LmNvbCwgdC5yb3cpKSByZXR1cm4gZmFsc2U7CiAgICAgIH0KICAgICAgcmV0dXJuIHRydWU7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxMikgRlVOw4fDlUVTIEFVWElMSUFSRVMKICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gY2xhbXAodmFsdWUsIG1pbiwgbWF4KXsKICAgICAgcmV0dXJuIE1hdGgubWF4KG1pbiwgTWF0aC5taW4obWF4LCB2YWx1ZSkpOwogICAgfQoKICAgIGZ1bmN0aW9uIGRpc3QoYSxiKXsKICAgICAgcmV0dXJuIE1hdGguaHlwb3QoYS54IC0gYi54LCBhLnkgLSBiLnkpOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMTMpIEVOQ09OVFJBUiBJTsONQ0lPIERPIFBBQy1NQU4KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gZmluZFBsYXllclN0YXJ0KCl7CiAgICAgIGZvcihsZXQgcj0wOyByPFJPV1M7IHIrKyl7CiAgICAgICAgZm9yKGxldCBjPTA7IGM8Q09MUzsgYysrKXsKICAgICAgICAgIGlmKE1BUFtyXVtjXSA9PT0gIlAiKXsKICAgICAgICAgICAgcmV0dXJuIHRpbGVUb1BpeGVsKGMsIHIpOwogICAgICAgICAgfQogICAgICAgIH0KICAgICAgfQogICAgICByZXR1cm4gdGlsZVRvUGl4ZWwoMSwxKTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDE0KSBDT0xFVEFSIFRJTEVTIEFORMOBVkVJUwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiB3YWxrYWJsZVRpbGVzKCl7CiAgICAgIGNvbnN0IHRpbGVzID0gW107CiAgICAgIGZvcihsZXQgcj0wOyByPFJPV1M7IHIrKyl7CiAgICAgICAgZm9yKGxldCBjPTA7IGM8Q09MUzsgYysrKXsKICAgICAgICAgIGlmKCFpc1dhbGxBdChjLHIpICYmIE1BUFtyXVtjXSAhPT0gIlAiKXsKICAgICAgICAgICAgdGlsZXMucHVzaCh7Y29sOmMsIHJvdzpyfSk7CiAgICAgICAgICB9CiAgICAgICAgfQogICAgICB9CiAgICAgIHJldHVybiB0aWxlczsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDE1KSBFU0NPTEhFUiBUSUxFUyDDmk5JQ09TCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIFVzYWRvIHBhcmEgZXNwYWxoYXIgcGFsYXZyYXMgYm9hcyBlIHJ1aW5zIG5vIG1hcGEuCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIHBpY2tVbmlxdWVUaWxlcyhjb3VudCwgYXZvaWQgPSBbXSl7CiAgICAgIGNvbnN0IGFsbCA9IHdhbGthYmxlVGlsZXMoKS5maWx0ZXIodCA9PiB7CiAgICAgICAgcmV0dXJuICFhdm9pZC5zb21lKGEgPT4gYS5jb2wgPT09IHQuY29sICYmIGEucm93ID09PSB0LnJvdyk7CiAgICAgIH0pOwoKICAgICAgZm9yKGxldCBpID0gYWxsLmxlbmd0aCAtIDE7IGkgPiAwOyBpLS0pewogICAgICAgIGNvbnN0IGogPSBNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiAoaSArIDEpKTsKICAgICAgICBbYWxsW2ldLCBhbGxbal1dID0gW2FsbFtqXSwgYWxsW2ldXTsKICAgICAgfQoKICAgICAgcmV0dXJuIGFsbC5zbGljZSgwLCBjb3VudCk7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxNikgQ1JJQVIgRVNUQURPIElOSUNJQUwgRE8gSk9HTwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiBjcmVhdGVHYW1lU3RhdGUoKXsKICAgICAgY29uc3QgcGxheWVyU3RhcnQgPSBmaW5kUGxheWVyU3RhcnQoKTsKICAgICAgY29uc3QgYXZvaWQgPSBbcGl4ZWxUb1RpbGUocGxheWVyU3RhcnQueCwgcGxheWVyU3RhcnQueSldOwoKICAgICAgY29uc3QgZ29vZFRpbGVzID0gcGlja1VuaXF1ZVRpbGVzKEdPT0RfV09SRFMubGVuZ3RoLCBhdm9pZCk7CiAgICAgIGNvbnN0IGJhZFRpbGVzID0gcGlja1VuaXF1ZVRpbGVzKEJBRF9XT1JEUy5sZW5ndGgsIFsuLi5hdm9pZCwgLi4uZ29vZFRpbGVzXSk7CgogICAgICBjb25zdCBnb29kID0gR09PRF9XT1JEUy5tYXAoKHdvcmQsIGkpID0+IHsKICAgICAgICBjb25zdCBwID0gdGlsZVRvUGl4ZWwoZ29vZFRpbGVzW2ldLmNvbCwgZ29vZFRpbGVzW2ldLnJvdyk7CiAgICAgICAgcmV0dXJuIHsKICAgICAgICAgIHRleHQ6IHdvcmQsCiAgICAgICAgICB4OiBwLngsCiAgICAgICAgICB5OiBwLnksCiAgICAgICAgICBlYXRlbjogZmFsc2UsCiAgICAgICAgICBwdWxzZTogTWF0aC5yYW5kb20oKSAqIE1hdGguUEkgKiAyCiAgICAgICAgfTsKICAgICAgfSk7CgogICAgICBjb25zdCBiYWQgPSBCQURfV09SRFMubWFwKCh3b3JkLCBpKSA9PiB7CiAgICAgICAgY29uc3QgcCA9IHRpbGVUb1BpeGVsKGJhZFRpbGVzW2ldLmNvbCwgYmFkVGlsZXNbaV0ucm93KTsKICAgICAgICByZXR1cm4gewogICAgICAgICAgdGV4dDogd29yZCwKICAgICAgICAgIHg6IHAueCwKICAgICAgICAgIHk6IHAueSwKICAgICAgICAgIHNwZWVkOiAxLjU1ICsgTWF0aC5yYW5kb20oKSAqIDAuMjUsCiAgICAgICAgICBmbGFzaDogTWF0aC5yYW5kb20oKSAqIE1hdGguUEkgKiAyLAogICAgICAgICAgZGlyVGltZXI6IDAsCiAgICAgICAgICBkaXJYOiAwLAogICAgICAgICAgZGlyWTogMAogICAgICAgIH07CiAgICAgIH0pOwoKICAgICAgcmV0dXJuIHsKICAgICAgICBzY29yZTogMCwKICAgICAgICBsaXZlczogMywKICAgICAgICB3b246IGZhbHNlLAogICAgICAgIHBsYXllcjogewogICAgICAgICAgeDogcGxheWVyU3RhcnQueCwKICAgICAgICAgIHk6IHBsYXllclN0YXJ0LnksCiAgICAgICAgICByOiAxMywKICAgICAgICAgIHNwZWVkOiAyLjgsCiAgICAgICAgICBtb3V0aDogMCwKICAgICAgICAgIGRpcjogInJpZ2h0IiwKICAgICAgICAgIG5leHREaXI6ICJyaWdodCIKICAgICAgICB9LAogICAgICAgIGdvb2QsCiAgICAgICAgYmFkCiAgICAgIH07CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAxNykgQVRVQUxJWkFSIEhVRAogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiB1cGRhdGVIVUQoKXsKICAgICAgc2NvcmVFbC50ZXh0Q29udGVudCA9IGdhbWUuc2NvcmU7CiAgICAgIGxpdmVzRWwudGV4dENvbnRlbnQgPSBnYW1lLmxpdmVzOwogICAgICByZW1haW5pbmdFbC50ZXh0Q29udGVudCA9IGdhbWUuZ29vZC5maWx0ZXIodyA9PiAhdy5lYXRlbikubGVuZ3RoOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMTgpIExJU1RBIERFIFBBTEFWUkFTIENFUlRBUwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiByZW5kZXJHb29kTGlzdCgpewogICAgICBnb29kV29yZExpc3RFbC5pbm5lckhUTUwgPSAiIjsKICAgICAgZ2FtZS5nb29kLmZvckVhY2goaXRlbSA9PiB7CiAgICAgICAgY29uc3QgZGl2ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7CiAgICAgICAgZGl2LmNsYXNzTmFtZSA9ICJ3b3JkSXRlbSIgKyAoaXRlbS5lYXRlbiA/ICIgZG9uZSIgOiAiIik7CiAgICAgICAgZGl2LnRleHRDb250ZW50ID0gaXRlbS50ZXh0OwogICAgICAgIGdvb2RXb3JkTGlzdEVsLmFwcGVuZENoaWxkKGRpdik7CiAgICAgIH0pOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMTkpIFJFU0VUQVIgSk9HTwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiByZXNldEdhbWUoKXsKICAgICAgZ2FtZSA9IGNyZWF0ZUdhbWVTdGF0ZSgpOwogICAgICB1cGRhdGVIVUQoKTsKICAgICAgcmVuZGVyR29vZExpc3QoKTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDIwKSBERVNFTkhBUiBGVU5ETwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiBkcmF3QmFja2dyb3VuZCgpewogICAgICBjdHguZmlsbFN0eWxlID0gIiMwMDAiOwogICAgICBjdHguZmlsbFJlY3QoMCwgMCwgY2FudmFzLndpZHRoLCBjYW52YXMuaGVpZ2h0KTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDIxKSBERVNFTkhBUiBMQUJJUklOVE8KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gZHJhd01hemUoKXsKICAgICAgZm9yKGxldCByID0gMDsgciA8IFJPV1M7IHIrKyl7CiAgICAgICAgZm9yKGxldCBjID0gMDsgYyA8IENPTFM7IGMrKyl7CiAgICAgICAgICBjb25zdCB4ID0gYyAqIFRJTEU7CiAgICAgICAgICBjb25zdCB5ID0gciAqIFRJTEU7CiAgICAgICAgICBjb25zdCBjZWxsID0gTUFQW3JdW2NdOwoKICAgICAgICAgIGlmKGNlbGwgPT09ICIjIil7CiAgICAgICAgICAgIGN0eC5maWxsU3R5bGUgPSAiIzBhMWQ1MiI7CiAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4LCB5LCBUSUxFLCBUSUxFKTsKCiAgICAgICAgICAgIGN0eC5zdHJva2VTdHlsZSA9ICJyZ2JhKDExNiwxNzksMjU1LC42NSkiOwogICAgICAgICAgICBjdHgubGluZVdpZHRoID0gMjsKICAgICAgICAgICAgY3R4LnN0cm9rZVJlY3QoeCArIDIsIHkgKyAyLCBUSUxFIC0gNCwgVElMRSAtIDQpOwoKICAgICAgICAgICAgY3R4LmZpbGxTdHlsZSA9ICJyZ2JhKDAsMjI5LDI1NSwuMDgpIjsKICAgICAgICAgICAgY3R4LmZpbGxSZWN0KHggKyA1LCB5ICsgNSwgVElMRSAtIDEwLCBUSUxFIC0gMTApOwogICAgICAgICAgfWVsc2V7CiAgICAgICAgICAgIGN0eC5maWxsU3R5bGUgPSAiIzA1MDUwNSI7CiAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4LCB5LCBUSUxFLCBUSUxFKTsKICAgICAgICAgIH0KCiAgICAgICAgICBpZihjZWxsID09PSAiLiIgfHwgY2VsbCA9PT0gIm8iKXsKICAgICAgICAgICAgY3R4LmJlZ2luUGF0aCgpOwogICAgICAgICAgICBjdHguZmlsbFN0eWxlID0gY2VsbCA9PT0gIm8iID8gIiNmZmQ0MDAiIDogInJnYmEoMjU1LDI1NSwyNTUsLjE4KSI7CiAgICAgICAgICAgIGN0eC5hcmMoeCArIFRJTEUvMiwgeSArIFRJTEUvMiwgY2VsbCA9PT0gIm8iID8gNSA6IDIuNSwgMCwgTWF0aC5QSSoyKTsKICAgICAgICAgICAgY3R4LmZpbGwoKTsKICAgICAgICAgIH0KICAgICAgICB9CiAgICAgIH0KCiAgICAgIGN0eC5zdHJva2VTdHlsZSA9ICJyZ2JhKDAsMjI5LDI1NSwuMjUpIjsKICAgICAgY3R4LmxpbmVXaWR0aCA9IDQ7CiAgICAgIGN0eC5zdHJva2VSZWN0KDIsIDIsIGNhbnZhcy53aWR0aCAtIDQsIGNhbnZhcy5oZWlnaHQgLSA0KTsKCiAgICAgIGN0eC5zYXZlKCk7CiAgICAgIGN0eC5mb250ID0gImJvbGQgMThweCBDb3VyaWVyIE5ldyI7CiAgICAgIGN0eC5maWxsU3R5bGUgPSAicmdiYSgyNTUsMjU1LDI1NSwuOCkiOwogICAgICBjdHguZmlsbFRleHQoIkNPTUEgQVMgUEFMQVZSQVMgQ0VSVEFTIiwgMjAsIDI0KTsKICAgICAgY3R4LnJlc3RvcmUoKTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDIyKSBERVNFTkhBUiBQQUxBVlJBUyBCT0FTCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIGRyYXdHb29kV29yZHMoKXsKICAgICAgZ2FtZS5nb29kLmZvckVhY2goaXRlbSA9PiB7CiAgICAgICAgaWYoaXRlbS5lYXRlbikgcmV0dXJuOwogICAgICAgIGl0ZW0ucHVsc2UgKz0gMC4wNjsKCiAgICAgICAgY3R4LnNhdmUoKTsKICAgICAgICBjdHguZm9udCA9ICJib2xkIDE3cHggQ291cmllciBOZXciOwogICAgICAgIGN0eC50ZXh0QWxpZ24gPSAiY2VudGVyIjsKICAgICAgICBjdHguc2hhZG93Q29sb3IgPSAiIzAwZmY5OSI7CiAgICAgICAgY3R4LnNoYWRvd0JsdXIgPSA3ICsgTWF0aC5zaW4oaXRlbS5wdWxzZSkgKiAyOwogICAgICAgIGN0eC5maWxsU3R5bGUgPSAiIzk4ZmY2NiI7CiAgICAgICAgY3R4LmZpbGxUZXh0KGl0ZW0udGV4dCwgaXRlbS54LCBpdGVtLnkgKyA2KTsKICAgICAgICBjdHgucmVzdG9yZSgpOwogICAgICB9KTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDIzKSBERVNFTkhBUiBQQUxBVlJBUyBSVUlOUwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiBkcmF3QmFkV29yZHMoKXsKICAgICAgZ2FtZS5iYWQuZm9yRWFjaChlbmVteSA9PiB7CiAgICAgICAgZW5lbXkuZmxhc2ggKz0gMC4wODsKCiAgICAgICAgY3R4LnNhdmUoKTsKICAgICAgICBjdHguZm9udCA9ICJib2xkIDE3cHggQ291cmllciBOZXciOwogICAgICAgIGN0eC50ZXh0QWxpZ24gPSAiY2VudGVyIjsKICAgICAgICBjdHguc2hhZG93Q29sb3IgPSAiI2ZmMmQ1NSI7CiAgICAgICAgY3R4LnNoYWRvd0JsdXIgPSA3ICsgTWF0aC5zaW4oZW5lbXkuZmxhc2gpICogMjsKICAgICAgICBjdHguZmlsbFN0eWxlID0gIiNmZjZiNmIiOwogICAgICAgIGN0eC5maWxsVGV4dChlbmVteS50ZXh0LCBlbmVteS54LCBlbmVteS55ICsgNik7CiAgICAgICAgY3R4LnJlc3RvcmUoKTsKICAgICAgfSk7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAyNCkgREVTRU5IQVIgUEFDLU1BTgogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiBkcmF3UGxheWVyKCl7CiAgICAgIGNvbnN0IHAgPSBnYW1lLnBsYXllcjsKICAgICAgY29uc3Qgb3BlbiA9IDAuMjIgKyBNYXRoLmFicyhNYXRoLnNpbihwLm1vdXRoKSkgKiAwLjI4OwoKICAgICAgbGV0IGFuZ2xlID0gMDsKICAgICAgaWYocC5kaXIgPT09ICJyaWdodCIpIGFuZ2xlID0gMDsKICAgICAgaWYocC5kaXIgPT09ICJsZWZ0IikgYW5nbGUgPSBNYXRoLlBJOwogICAgICBpZihwLmRpciA9PT0gInVwIikgYW5nbGUgPSAtTWF0aC5QSSAvIDI7CiAgICAgIGlmKHAuZGlyID09PSAiZG93biIpIGFuZ2xlID0gTWF0aC5QSSAvIDI7CgogICAgICBjdHguc2F2ZSgpOwogICAgICBjdHgudHJhbnNsYXRlKHAueCwgcC55KTsKICAgICAgY3R4LnJvdGF0ZShhbmdsZSk7CgogICAgICBjdHguZmlsbFN0eWxlID0gIiNmZmQ0MDAiOwogICAgICBjdHguYmVnaW5QYXRoKCk7CiAgICAgIGN0eC5tb3ZlVG8oMCwwKTsKICAgICAgY3R4LmFyYygwLDAscC5yLCBvcGVuLCBNYXRoLlBJKjIgLSBvcGVuKTsKICAgICAgY3R4LmNsb3NlUGF0aCgpOwogICAgICBjdHguZmlsbCgpOwoKICAgICAgY3R4LmZpbGxTdHlsZSA9ICIjMTExIjsKICAgICAgY3R4LmJlZ2luUGF0aCgpOwogICAgICBjdHguYXJjKDQsIC02LCAyLjIsIDAsIE1hdGguUEkgKiAyKTsKICAgICAgY3R4LmZpbGwoKTsKCiAgICAgIGN0eC5yZXN0b3JlKCk7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAyNSkgVEVOVEFSIE1VREFSIERJUkXDh8ODTwogICAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgICAgICBPIFBhYy1NYW4gZ3VhcmRhIGEgcHLDs3hpbWEgZGlyZcOnw6NvIGRlc2VqYWRhLgogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiB0cnlTZXROZXh0RGlyZWN0aW9uKCl7CiAgICAgIGNvbnN0IHAgPSBnYW1lLnBsYXllcjsKICAgICAgbGV0IGR4ID0gMCwgZHkgPSAwLCBkaXIgPSBwLm5leHREaXI7CgogICAgICBpZihkaXIgPT09ICJsZWZ0IikgZHggPSAtcC5zcGVlZDsKICAgICAgaWYoZGlyID09PSAicmlnaHQiKSBkeCA9IHAuc3BlZWQ7CiAgICAgIGlmKGRpciA9PT0gInVwIikgZHkgPSAtcC5zcGVlZDsKICAgICAgaWYoZGlyID09PSAiZG93biIpIGR5ID0gcC5zcGVlZDsKCiAgICAgIGlmKGNhbk1vdmVUbyhwLnggKyBkeCwgcC55ICsgZHksIHAuciAtIDEpKXsKICAgICAgICBwLmRpciA9IGRpcjsKICAgICAgfQogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMjYpIE1PVkVSIFBBQy1NQU4KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gbW92ZVBsYXllcigpewogICAgICBjb25zdCBwID0gZ2FtZS5wbGF5ZXI7CgogICAgICBpZihrZXlzLmxlZnQpIHAubmV4dERpciA9ICJsZWZ0IjsKICAgICAgaWYoa2V5cy5yaWdodCkgcC5uZXh0RGlyID0gInJpZ2h0IjsKICAgICAgaWYoa2V5cy51cCkgcC5uZXh0RGlyID0gInVwIjsKICAgICAgaWYoa2V5cy5kb3duKSBwLm5leHREaXIgPSAiZG93biI7CgogICAgICB0cnlTZXROZXh0RGlyZWN0aW9uKCk7CgogICAgICBsZXQgZHggPSAwLCBkeSA9IDA7CiAgICAgIGlmKHAuZGlyID09PSAibGVmdCIpIGR4ID0gLXAuc3BlZWQ7CiAgICAgIGlmKHAuZGlyID09PSAicmlnaHQiKSBkeCA9IHAuc3BlZWQ7CiAgICAgIGlmKHAuZGlyID09PSAidXAiKSBkeSA9IC1wLnNwZWVkOwogICAgICBpZihwLmRpciA9PT0gImRvd24iKSBkeSA9IHAuc3BlZWQ7CgogICAgICBpZihjYW5Nb3ZlVG8ocC54ICsgZHgsIHAueSArIGR5LCBwLnIgLSAxKSl7CiAgICAgICAgcC54ICs9IGR4OwogICAgICAgIHAueSArPSBkeTsKICAgICAgfQoKICAgICAgcC5tb3V0aCArPSAwLjE4OwogICAgICBwLnggPSBjbGFtcChwLngsIHAuciwgY2FudmFzLndpZHRoIC0gcC5yKTsKICAgICAgcC55ID0gY2xhbXAocC55LCBwLnIsIGNhbnZhcy5oZWlnaHQgLSBwLnIpOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMjcpIERJUkXDh8OVRVMgVsOBTElEQVMgUEFSQSBJTklNSUdPCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIGRpcmVjdGlvbnNGcm9tUG9zaXRpb24oeCwgeSwgcmFkaXVzKXsKICAgICAgY29uc3QgY2FuZGlkYXRlcyA9IFsKICAgICAgICB7ZHg6IDEsIGR5OiAwfSwKICAgICAgICB7ZHg6LTEsIGR5OiAwfSwKICAgICAgICB7ZHg6IDAsIGR5OiAxfSwKICAgICAgICB7ZHg6IDAsIGR5Oi0xfQogICAgICBdOwogICAgICByZXR1cm4gY2FuZGlkYXRlcy5maWx0ZXIoZCA9PiBjYW5Nb3ZlVG8oeCArIGQuZHggKiAyLCB5ICsgZC5keSAqIDIsIHJhZGl1cykpOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMjgpIE1PVkVSIElOSU1JR09TCiAgICAgICAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgIEVsZXMgdGVudGFtIHNlZ3VpciBvIFBhYy1NYW4uCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIG1vdmVFbmVtaWVzKCl7CiAgICAgIGNvbnN0IHAgPSBnYW1lLnBsYXllcjsKCiAgICAgIGdhbWUuYmFkLmZvckVhY2goZW5lbXkgPT4gewogICAgICAgIGVuZW15LmRpclRpbWVyLS07CgogICAgICAgIGlmKGVuZW15LmRpclRpbWVyIDw9IDApewogICAgICAgICAgY29uc3QgZGlycyA9IGRpcmVjdGlvbnNGcm9tUG9zaXRpb24oZW5lbXkueCwgZW5lbXkueSwgMTIpOwoKICAgICAgICAgIGRpcnMuc29ydCgoYSxiKSA9PiB7CiAgICAgICAgICAgIGNvbnN0IGRhID0gTWF0aC5oeXBvdCgoZW5lbXkueCArIGEuZHgqMjApIC0gcC54LCAoZW5lbXkueSArIGEuZHkqMjApIC0gcC55KTsKICAgICAgICAgICAgY29uc3QgZGIgPSBNYXRoLmh5cG90KChlbmVteS54ICsgYi5keCoyMCkgLSBwLngsIChlbmVteS55ICsgYi5keSoyMCkgLSBwLnkpOwogICAgICAgICAgICByZXR1cm4gZGEgLSBkYjsKICAgICAgICAgIH0pOwoKICAgICAgICAgIGNvbnN0IGJlc3QgPSBkaXJzWzBdIHx8IHtkeDowLCBkeTowfTsKICAgICAgICAgIGVuZW15LmRpclggPSBiZXN0LmR4OwogICAgICAgICAgZW5lbXkuZGlyWSA9IGJlc3QuZHk7CiAgICAgICAgICBlbmVteS5kaXJUaW1lciA9IDEwICsgTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpICogMTApOwogICAgICAgIH0KCiAgICAgICAgY29uc3QgbnggPSBlbmVteS54ICsgZW5lbXkuZGlyWCAqIGVuZW15LnNwZWVkOwogICAgICAgIGNvbnN0IG55ID0gZW5lbXkueSArIGVuZW15LmRpclkgKiBlbmVteS5zcGVlZDsKCiAgICAgICAgaWYoY2FuTW92ZVRvKG54LCBueSwgMTIpKXsKICAgICAgICAgIGVuZW15LnggPSBueDsKICAgICAgICAgIGVuZW15LnkgPSBueTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgZW5lbXkuZGlyVGltZXIgPSAwOwogICAgICAgIH0KICAgICAgfSk7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAyOSkgQ09MSVPDg08gQ09NIFBBTEFWUkFTIEJPQVMKICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gY2hlY2tHb29kQ29sbGlzaW9ucygpewogICAgICBjb25zdCBwID0gZ2FtZS5wbGF5ZXI7CiAgICAgIGxldCBjaGFuZ2VkID0gZmFsc2U7CgogICAgICBnYW1lLmdvb2QuZm9yRWFjaChpdGVtID0+IHsKICAgICAgICBpZihpdGVtLmVhdGVuKSByZXR1cm47CiAgICAgICAgaWYoZGlzdChwLCBpdGVtKSA8IDI0KXsKICAgICAgICAgIGl0ZW0uZWF0ZW4gPSB0cnVlOwogICAgICAgICAgZ2FtZS5zY29yZSArPSAxMDsKICAgICAgICAgIGVhdFNvdW5kKCk7CiAgICAgICAgICBjaGFuZ2VkID0gdHJ1ZTsKICAgICAgICB9CiAgICAgIH0pOwoKICAgICAgaWYoY2hhbmdlZCl7CiAgICAgICAgdXBkYXRlSFVEKCk7CiAgICAgICAgcmVuZGVyR29vZExpc3QoKTsKICAgICAgfQoKICAgICAgaWYoZ2FtZS5nb29kLmV2ZXJ5KGl0ZW0gPT4gaXRlbS5lYXRlbikpewogICAgICAgIGdhbWUud29uID0gdHJ1ZTsKICAgICAgICBydW5uaW5nID0gZmFsc2U7CiAgICAgICAgcGF1c2VkID0gdHJ1ZTsKICAgICAgICB3aW5Tb3VuZCgpOwogICAgICAgIHNob3dPdmVybGF5KAogICAgICAgICAgIvCfj4YgVklUw5NSSUEhIiwKICAgICAgICAgICJWb2PDqiBjb21ldSB0b2RhcyBhcyBwYWxhdnJhcyBjb3JyZXRhcyBkbyB0ZW1hLjxicj5BZ29yYSDDqSBzw7MgcmVpbmljaWFyIGUgam9nYXIgZGUgbm92by4iCiAgICAgICAgKTsKICAgICAgfQogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMzApIENPTElTw4NPIENPTSBJTklNSUdPUwogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiBjaGVja0VuZW15Q29sbGlzaW9ucygpewogICAgICBjb25zdCBwID0gZ2FtZS5wbGF5ZXI7CgogICAgICBmb3IoY29uc3QgZW5lbXkgb2YgZ2FtZS5iYWQpewogICAgICAgIGlmKGRpc3QocCwgZW5lbXkpIDwgMjQpewogICAgICAgICAgZ2FtZS5saXZlcy0tOwogICAgICAgICAgaGl0U291bmQoKTsKICAgICAgICAgIHVwZGF0ZUhVRCgpOwoKICAgICAgICAgIGNvbnN0IHN0YXJ0ID0gZmluZFBsYXllclN0YXJ0KCk7CiAgICAgICAgICBwLnggPSBzdGFydC54OwogICAgICAgICAgcC55ID0gc3RhcnQueTsKICAgICAgICAgIHAuZGlyID0gInJpZ2h0IjsKICAgICAgICAgIHAubmV4dERpciA9ICJyaWdodCI7CgogICAgICAgICAgaWYoZ2FtZS5saXZlcyA8PSAwKXsKICAgICAgICAgICAgcnVubmluZyA9IGZhbHNlOwogICAgICAgICAgICBwYXVzZWQgPSB0cnVlOwogICAgICAgICAgICBzaG93T3ZlcmxheSgKICAgICAgICAgICAgICAi8J+SgCBHQU1FIE9WRVIiLAogICAgICAgICAgICAgICJBcyBwYWxhdnJhcyBlcnJhZGFzIHBlZ2FyYW0gdm9jw6ouPGJyPkNsaXF1ZSBlbSBub3ZvIGpvZ28gcGFyYSByZWNvbWXDp2FyLiIKICAgICAgICAgICAgKTsKICAgICAgICAgIH0KICAgICAgICAgIGJyZWFrOwogICAgICAgIH0KICAgICAgfQogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMzEpIE1PU1RSQVIgLyBFU0NPTkRFUiBPVkVSTEFZCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIHNob3dPdmVybGF5KHRpdGxlLCB0ZXh0KXsKICAgICAgb3ZlcmxheVRpdGxlLmlubmVySFRNTCA9IHRpdGxlOwogICAgICBvdmVybGF5VGV4dC5pbm5lckhUTUwgPSB0ZXh0OwogICAgICBvdmVybGF5LnN0eWxlLmRpc3BsYXkgPSAiZmxleCI7CiAgICB9CgogICAgZnVuY3Rpb24gaGlkZU92ZXJsYXkoKXsKICAgICAgb3ZlcmxheS5zdHlsZS5kaXNwbGF5ID0gIm5vbmUiOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMzIpIFJFTkRFUiBHRVJBTAogICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCiAgICBmdW5jdGlvbiByZW5kZXIoKXsKICAgICAgZHJhd0JhY2tncm91bmQoKTsKICAgICAgZHJhd01hemUoKTsKICAgICAgZHJhd0dvb2RXb3JkcygpOwogICAgICBkcmF3QmFkV29yZHMoKTsKICAgICAgZHJhd1BsYXllcigpOwogICAgfQoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMzMpIExPT1AgUFJJTkNJUEFMCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGZ1bmN0aW9uIGxvb3AoKXsKICAgICAgaWYoIXJ1bm5pbmcpIHJldHVybjsKCiAgICAgIG1vdmVQbGF5ZXIoKTsKICAgICAgbW92ZUVuZW1pZXMoKTsKICAgICAgY2hlY2tHb29kQ29sbGlzaW9ucygpOwogICAgICBjaGVja0VuZW15Q29sbGlzaW9ucygpOwogICAgICByZW5kZXIoKTsKCiAgICAgIGxvb3BJZCA9IHJlcXVlc3RBbmltYXRpb25GcmFtZShsb29wKTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDM0KSBFVkVOVE9TIERPIFRFQ0xBRE8KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigia2V5ZG93biIsIGUgPT4gewogICAgICBpZihlLmtleSA9PT0gIkFycm93TGVmdCIpIGtleXMubGVmdCA9IHRydWU7CiAgICAgIGlmKGUua2V5ID09PSAiQXJyb3dSaWdodCIpIGtleXMucmlnaHQgPSB0cnVlOwogICAgICBpZihlLmtleSA9PT0gIkFycm93VXAiKSBrZXlzLnVwID0gdHJ1ZTsKICAgICAgaWYoZS5rZXkgPT09ICJBcnJvd0Rvd24iKSBrZXlzLmRvd24gPSB0cnVlOwogICAgfSk7CgogICAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigia2V5dXAiLCBlID0+IHsKICAgICAgaWYoZS5rZXkgPT09ICJBcnJvd0xlZnQiKSBrZXlzLmxlZnQgPSBmYWxzZTsKICAgICAgaWYoZS5rZXkgPT09ICJBcnJvd1JpZ2h0Iikga2V5cy5yaWdodCA9IGZhbHNlOwogICAgICBpZihlLmtleSA9PT0gIkFycm93VXAiKSBrZXlzLnVwID0gZmFsc2U7CiAgICAgIGlmKGUua2V5ID09PSAiQXJyb3dEb3duIikga2V5cy5kb3duID0gZmFsc2U7CiAgICB9KTsKCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDM1KSBJTklDSUFSIEpPR08KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gc3RhcnRHYW1lKCl7CiAgICAgIGVuc3VyZUF1ZGlvKCk7CiAgICAgIHJlc2V0R2FtZSgpOwogICAgICBoaWRlT3ZlcmxheSgpOwogICAgICBwYXVzZWQgPSBmYWxzZTsKICAgICAgcnVubmluZyA9IHRydWU7CiAgICAgIHJlbmRlcigpOwoKICAgICAgaWYobG9vcElkKSBjYW5jZWxBbmltYXRpb25GcmFtZShsb29wSWQpOwogICAgICBsb29wKCk7CiAgICB9CgogICAgLyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAzNikgUkVJTklDSUFSIEpPR08KICAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwogICAgZnVuY3Rpb24gcmVzdGFydEdhbWUoKXsKICAgICAgcmVzZXRHYW1lKCk7CiAgICAgIGhpZGVPdmVybGF5KCk7CiAgICAgIHBhdXNlZCA9IGZhbHNlOwogICAgICBydW5uaW5nID0gdHJ1ZTsKICAgICAgcmVuZGVyKCk7CgogICAgICBpZihsb29wSWQpIGNhbmNlbEFuaW1hdGlvbkZyYW1lKGxvb3BJZCk7CiAgICAgIGxvb3AoKTsKICAgIH0KCiAgICAvKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgIDM3KSBCT1TDlUVTCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIGJ0blN0YXJ0LmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIiwgc3RhcnRHYW1lKTsKICAgIGJ0blJlc3RhcnQuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCByZXN0YXJ0R2FtZSk7CiAgICBvdmVybGF5U3RhcnQuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCBzdGFydEdhbWUpOwogICAgb3ZlcmxheVJlc3RhcnQuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCByZXN0YXJ0R2FtZSk7CgogICAgYnRuU291bmQuYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLCAoKSA9PiB7CiAgICAgIHNvdW5kRW5hYmxlZCA9ICFzb3VuZEVuYWJsZWQ7CiAgICAgIGJ0blNvdW5kLnRleHRDb250ZW50ID0gc291bmRFbmFibGVkID8gIvCflIogU09NOiBPTiIgOiAi8J+UhyBTT006IE9GRiI7CiAgICAgIGlmKHNvdW5kRW5hYmxlZCkgYmVlcCg2MDAsIDAuMDUsICJzcXVhcmUiLCAwLjAyKTsKICAgIH0pOwoKICAgIC8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgMzgpIElOSUNJQUxJWkHDh8ODTwogICAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgICAgICBQcmVwYXJhIG8gam9nbyBqw6EgZGVzZW5oYWRvLCBzZW0gY29tZcOnYXIuCiAgICA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KICAgIHJlc2V0R2FtZSgpOwogICAgcmVuZGVyKCk7CiAgPC9zY3JpcHQ+Cgo8c2NyaXB0PgovKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgUE9OVEUgQ09NIEEgQVVMQSBQQUkKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ICovCihmdW5jdGlvbigpewogIGZ1bmN0aW9uIHNlbmQoc3RhdGUsIGV4dHJhKXsKICAgIHRyeXsKICAgICAgd2luZG93LnBhcmVudCAmJiB3aW5kb3cucGFyZW50LnBvc3RNZXNzYWdlKE9iamVjdC5hc3NpZ24oeyB0eXBlOiJwYWNtYW4tc3RhdHVzIiwgc3RhdGU6c3RhdGUgfSwgZXh0cmEgfHwge30pLCAiKiIpOwogICAgfWNhdGNoKGUpe30KICB9CgogIHNlbmQoInJlYWR5Iik7CgogIGNvbnN0IG9yaWdpbmFsU2hvd092ZXJsYXkgPSB3aW5kb3cuc2hvd092ZXJsYXk7CiAgaWYodHlwZW9mIG9yaWdpbmFsU2hvd092ZXJsYXkgPT09ICJmdW5jdGlvbiIpewogICAgd2luZG93LnNob3dPdmVybGF5ID0gZnVuY3Rpb24odGl0bGUsIHRleHQpewogICAgICBvcmlnaW5hbFNob3dPdmVybGF5KHRpdGxlLCB0ZXh0KTsKICAgICAgY29uc3Qgc2FmZVRpdGxlID0gU3RyaW5nKHRpdGxlIHx8ICIiKTsKICAgICAgY29uc3Qgc3RhdHVzID0gc2FmZVRpdGxlLmluY2x1ZGVzKCJWSVTDk1JJQSIpID8gIndvbiIgOiBzYWZlVGl0bGUuaW5jbHVkZXMoIkdBTUUgT1ZFUiIpID8gImxvc3QiIDogIm92ZXJsYXkiOwogICAgICBzZW5kKHN0YXR1cywgewogICAgICAgIHRpdGxlOiBzYWZlVGl0bGUsCiAgICAgICAgc2NvcmU6ICh3aW5kb3cuZ2FtZSAmJiB0eXBlb2Ygd2luZG93LmdhbWUuc2NvcmUgPT09ICJudW1iZXIiKSA/IHdpbmRvdy5nYW1lLnNjb3JlIDogMCwKICAgICAgICBsaXZlczogKHdpbmRvdy5nYW1lICYmIHR5cGVvZiB3aW5kb3cuZ2FtZS5saXZlcyA9PT0gIm51bWJlciIpID8gd2luZG93LmdhbWUubGl2ZXMgOiAwCiAgICAgIH0pOwogICAgfTsKICB9Cn0pKCk7Cjwvc2NyaXB0PgoKPC9ib2R5Pgo8L2h0bWw+";
+
+function openPacmanModal(){
+  const frame = document.getElementById("pacmanFrame");
+  if(!frame.getAttribute("src")){
+    frame.setAttribute("src", PACMAN_DATA_URL);
+  }
+  document.getElementById("pacmanOverlay").style.display = "flex";
+  document.getElementById("pacmanState").textContent = "Jogo aberto em tela grande.";
+  document.getElementById("pacmanState").className = "statusLive playing";
+}
+
+function closePacmanModal(){
+  document.getElementById("pacmanOverlay").style.display = "none";
+}
+
+function reloadPacmanGame(){
+  const frame = document.getElementById("pacmanFrame");
+  frame.setAttribute("src", PACMAN_DATA_URL);
+  state.pacmanWon = false;
+  showOk("a8", false);
+  document.getElementById("pacmanResult").textContent = "Jogo reiniciado. Ainda sem vitória registrada.";
+  document.getElementById("pacmanScore").textContent = "0 ponto(s).";
+  document.getElementById("pacmanState").textContent = "Jogo recarregado.";
+  document.getElementById("pacmanState").className = "statusLive playing";
+}
+
+window.addEventListener("message", function(event){
+  const data = event.data || {};
+  if(data.type !== "pacman-status") return;
+
+  if(data.state === "ready"){
+    document.getElementById("pacmanState").textContent = "Pac-Man carregado e pronto para jogar.";
+    document.getElementById("pacmanState").className = "statusLive ready";
+  }
+
+  if(typeof data.score === "number"){
+    document.getElementById("pacmanScore").textContent = data.score + " ponto(s).";
+  }
+
+  if(data.state === "won"){
+    state.pacmanWon = true;
+    document.getElementById("pacmanState").textContent = "Vitória detectada no jogo.";
+    document.getElementById("pacmanState").className = "statusLive won";
+    document.getElementById("pacmanResult").textContent = "Parabéns! O aluno venceu o Pac-Man pedagógico.";
+    showOk("a8", true);
+    return;
+  }
+
+  if(data.state === "lost"){
+    document.getElementById("pacmanState").textContent = "Game over detectado. Tente novamente.";
+    document.getElementById("pacmanState").className = "statusLive lost";
+    document.getElementById("pacmanResult").textContent = "Ainda não venceu. Reabra ou recarregue o jogo e tente outra vez.";
+  }
+});
+
+function checkA7(){
+  const c1 = document.getElementById("c1").checked;
+  const c2 = document.getElementById("c2").checked;
+  const c3 = document.getElementById("c3").checked;
+  const checked = [c1,c2,c3].filter(Boolean).length;
+
+  const title = document.getElementById("a7title").value.trim();
+  const words = title.split(/\s+/).filter(Boolean);
+
+  const ok = (checked >= 2) && (words.length >= 3);
+  showOk("a7", ok);
+}
+/* =========================================================
+   [FIM] 8) CONFERIR
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 9) SOPA DE LETRAS (grade fixa 13x13)
+   - Clicável: marca letras (amarelo)
+   - Palavras embutidas na horizontal/vertical (sem acento)
+========================================================= */
+const WS_SIZE = 13;
+const WS_WORDS = [
+  "BILHETE",
+  "RECADO",
+  "AVISO",
+  "TITULO",
+  "HORARIO",
+  "ASSINATURA",
+  "DESTINATARIO",
+  "MENSAGEM"
+];
+
+// Grade pré-montada (para ser consistente e imprimível)
+// Palavras colocadas: BILHETE (linha 1), RECADO (coluna 1), AVISO (linha 6), TITULO (coluna 13),
+// HORARIO (linha 10), ASSINATURA (coluna 5), DESTINATARIO (linha 13), MENSAGEM (coluna 9)
+const WS_GRID = [
+  "BILHETEXQWERTY",
+  "RZKLMNOPASDFGH",
+  "ECTREWQAZXCVBN",
+  "CALPHABETICOJK",
+  "ADFGHJKLQWERTY",
+  "OVISOPLNMKJHGF",
+  "DPOIUYTREWQAZX",
+  "OASDFGHJKLZXCV",
+  "ZBNMENSAGEMQWER",
+  "HORAIOPLKJHGFDS",  // HORARIO vai ser ajustado abaixo (corrigimos no build)
+  "ASSINATURAXCVBN",
+  "IOPMLKJHGFDSQAZ",
+  "DESTINATARIOXYZ"
+];
+
+function buildWordSearch(){
+  const board = document.getElementById("wsBoard");
+  board.innerHTML = "";
+
+  // Corrige linha 10 para conter HORARIO certinho (H O R A R I O)
+  const fixed = WS_GRID.slice();
+  fixed[9] = "HORARIOPLKJHGF"; // 13 letras
+
+  for(let r=0;r<WS_SIZE;r++){
+    const row = fixed[r];
+    for(let c=0;c<WS_SIZE;c++){
+      const ch = row[c] || "X";
+      const div = document.createElement("div");
+      div.className = "cell";
+      div.textContent = ch;
+      div.title = `linha ${r+1}, coluna ${c+1}`;
+      div.addEventListener("click", ()=> div.classList.toggle("on"));
+      board.appendChild(div);
+    }
+  }
+}
+
+function wsClearMarks(){
+  document.querySelectorAll(".cell.on").forEach(el=>el.classList.remove("on"));
+}
+/* =========================================================
+   [FIM] 9) SOPA DE LETRAS
+========================================================= */
+
+/* =========================================================
+   [INÍCIO] 10) CERTIFICADO
+========================================================= */
+function openCert(){
+  document.getElementById("certStudent").textContent = state.student.name || "—";
+  document.getElementById("certClass").textContent   = state.student.turma || "—";
+  document.getElementById("certSchool").textContent  = state.student.escola || "—";
+
+  const d = new Date();
+  const dd = String(d.getDate()).padStart(2,"0");
+  const mm = String(d.getMonth()+1).padStart(2,"0");
+  const yyyy = d.getFullYear();
+  document.getElementById("certDate").textContent = `${dd}/${mm}/${yyyy}`;
+
+  document.getElementById("certOverlay").style.display = "flex";
+}
+function closeCert(){ document.getElementById("certOverlay").style.display = "none"; }
+/* =========================================================
+   [FIM] 10) CERTIFICADO
+========================================================= */
+</script>
+
+<!-- =========================================================
+  (OPCIONAL) IMAGENS PREMIUM — placeholders
+  Se você quiser colocar ícones/imagens no topo dos cards:
+  - Procure por: [IMG_PLACEHOLDER]
+  - Substitua por: <img class="miniImg" src="SUA_IMAGEM.png" alt="..." />
+  Eu deixei sem imagem para não quebrar nada.
+========================================================= -->
+function toggleLowVision(){
+  document.body.classList.toggle("lowVision");
+}
+</body>
+</html>
