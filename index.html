@@ -465,12 +465,115 @@ textarea:focus, input:focus, select:focus{
 /* =========================================================
    [FIM] 12) PAC-MAN PEDAGÓGICO
 ========================================================= */
+/* =========================================================
+   ♿ MODO BAIXA VISÃO + ANTI-CORTE UNIVERSAL
+   Funciona em: iPhone, Android, Tablet, Desktop
+========================================================= */
 
+/* Nunca esconder overflow */
+html, body{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:auto;
+}
+
+/* Imagens nunca estouram */
+img, video, iframe, canvas{
+  max-width:100%;
+  height:auto;
+}
+
+/* ---------- RESPONSIVO AUTOMÁTICO (CELULAR) ---------- */
+@media (max-width: 1024px){
+
+  body{
+    padding:10px;
+  }
+
+  .page{
+    width:min(297mm, 98vw);
+    max-width:98vw;
+    height:auto;            /* nunca corta embaixo */
+    min-height:unset;
+    overflow:visible;       /* nunca corta lateral */
+  }
+
+  .content{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    padding:14px;
+  }
+
+  /* Se tiver grid 2 colunas */
+  .cols{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* ---------- BAIXA VISÃO ---------- */
+body.lowVision{
+  font-size:140%;
+  overflow-x:auto;
+  overflow-y:auto;
+}
+
+body.lowVision .page{
+  width:min(297mm, 98vw);
+  max-width:98vw;
+  height:auto;
+  overflow:visible;
+}
+
+body.lowVision .content{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+  padding:16px;
+}
+
+body.lowVision .cols{
+  grid-template-columns:1fr !important;
+}
+
+/* Botões maiores */
+body.lowVision button{
+  font-size:1.1em;
+  padding:12px 16px;
+}
+
+/* Inputs maiores */
+body.lowVision input,
+body.lowVision textarea{
+  font-size:1.1em;
+  padding:10px;
+}
 </style>
 </head>
 
 <body>
-
+<div style="
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  z-index:999999;
+">
+  <button onclick="toggleLowVision()"
+    style="
+      padding:12px 16px;
+      border-radius:14px;
+      border:none;
+      font-weight:bold;
+      background:#111;
+      color:white;
+      cursor:pointer;">
+    👁️ Baixa Visão
+  </button>
+</div>
 <!-- =========================================================
      [INÍCIO] A) OVERLAY ENTRADA
 ========================================================= -->
@@ -1351,6 +1454,9 @@ function closeCert(){ document.getElementById("certOverlay").style.display = "no
 /* =========================================================
    [FIM] 10) CERTIFICADO
 ========================================================= */
+function toggleLowVision(){
+  document.body.classList.toggle("lowVision");
+}
 </script>
 
 <!-- =========================================================
